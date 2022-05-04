@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% load cms_tags menu_tags i18n %}
+{% load sekizai_tags  staticfiles %}
+
+{% block bodyclass %}standard{% endblock%}
+
+
+{% block container %}
+    <section id="standard-top-banner" class="block-text section-white">
+      <div class="container">
+
+
+        {% placeholder "contenu" %}
+      </div>
+    </section>
+
+
+{% endblock %}

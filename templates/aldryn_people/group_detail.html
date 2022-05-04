@@ -1,0 +1,11 @@
+{% extends "people_base.html" %}
+{% load i18n cms_tags %}
+
+{% block title %}{{ group.name }} - {{ block.super }}{% endblock %}
+
+{% block contenu %}
+    <h2>{% render_model group "name" %}</h2>
+    {% for person in group.people.all|dictsort:"name" %}
+        {% include "aldryn_people/includes/person.html" with person=person %}
+    {% endfor %}
+{% endblock contenu %}

@@ -1,0 +1,27 @@
+{% if form %}
+
+    {% if form.is_multipart %}
+        <form enctype="multipart/form-data" method="POST" action="" class="form-custom">
+    {% else %}
+       <form method="POST" action="" class="form-custom">
+    {% endif %}
+	{% csrf_token %}
+
+        {% for field in form %}
+            <div class="field_row">
+                <label class="label">{{ field.label }}</label>
+                {{ field }}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+        <div class="align-center">
+
+          <button type="submit" class="button" name="contact_plus_form_{{ contact.id }}" >{% if contact.submit %}{{ contact.submit }}{% endif %}</button>
+
+
+        </div>
+			</form>
+{% else %}
+	{{ contact.thanks|safe }}
+
+{% endif %}

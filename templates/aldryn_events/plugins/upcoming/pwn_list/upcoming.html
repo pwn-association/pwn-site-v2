@@ -1,0 +1,43 @@
+{% load i18n %}
+
+{% if plugin_configuration_error %}
+    {% if request.user.is_staff or request.user.is_superuser %}
+        <p>{{ plugin_configuration_error }}</p>
+    {% endif %}
+{% else %}
+<div class="grid event-grid">
+
+
+        {% for event in events %}
+        <article class="event grid-item col">
+          <div class="event-inner">
+            <a href="{{ event.get_absolute_url }}" class="link-overlay"></a>
+            <div class="thumb" style="background-image: url('{{ event.image.url }}')">
+              <span class="date">
+                <span class="day">{{ event.start|date:"d" }}</span>
+                <span class="month">{{ event.start|date:"M" }}</span>
+              </span>
+
+            </div>
+            <div class="event-description">
+              {% for tag in event.tags.all %}
+                  <a href="/evenements/tag/{{ tag.slug }}" class="event-tag">[{{ tag.name }}]</a>
+              {% endfor %}
+
+              <h3 class="event-name">
+                {{ event.get_title }}
+              </h3>
+            </div>
+
+
+
+          </div>
+
+
+        </article>
+
+        {% empty %}
+            <!-- <li>{% trans "No items available" %}</li> -->
+        {% endfor %}
+</div>
+{% endif %}

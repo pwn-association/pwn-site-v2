@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block bodyclass %}event-base{% endblock %}
+{% load cms_tags menu_tags i18n %}
+{% load sekizai_tags  staticfiles %}
+
+{% block container %}
+<section id="events-container">
+  <div class="container">
+
+        <h2 class="section-title section-title-centered">
+          <span class="before"></span>
+          <span class="center">{% placeholder "titre des evenements a venir" %}</span>
+          <span class="after"></span>
+        </h2>
+        <div class="clear"></div>
+        <div class="upcoming-events grid event-grid">
+
+          {% placeholder "liste evenements a venir" %}
+        </div>
+
+        <h2 class="section-title section-title-centered">
+          <span class="before"></span>
+          <span class="center">{% placeholder "titre des evenements passes" %}</span>
+          <span class="after"></span>
+        </h2>
+        <div class="clear"></div>
+        <div class="past-events grid event-grid">
+        {% placeholder "liste evenements passes" %}
+        </div>
+
+
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% load i18n cms_tags sekizai_tags apphooks_config_tags bootstrap3 %}
+
+{# INFO: shown when registration is closed #}
+{% if event.is_registration_deadline_passed %}
+    <p>{% trans "The registration deadline for this event has passed, registration is closed." %}</p>
+{% endif %}
+
+{# INFO: shown when successfully registered #}
+{% if already_registered and not event.is_registration_deadline_passed %}
+    <p>{% trans "Thank you for your registration!" %}</p>
+    <form class="form-custom" action="{% namespace_url 'events_registration_reset' event.slug namespace=view.namespace %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="button">{% trans "Reset your registration" %}</button>
+    </form>
+{% endif %}
+
+{# INFO: shown when registration is open #}
+{% if not already_registered and not event.is_registration_deadline_passed %}
+    <form method="post" class="form-custom">
+      <h3>Formulaire de réservation</h3>
+        {% csrf_token %}
+
+        {# --- Erreurs globales --- #}
+        {{ form.non_field_errors }}
+
+
+        {{ form.first_name.errors }}
+        <label for="{{ form.first_name.id_for_label }}">Prénom</label>
+        {{ form.first_name }}
+        <!-- Je t'ai mis l'equivalent html en commentaire si tu souhaites ajouter un placeholder dans le champ ou un required par exemple-->
+        {# <input id="id_first_name" maxlength="100" name="first_name" type="text">#}
+
+        {{ form.last_name.errors }}
+        <label for="{{ form.last_name.id_for_label }}">Nom</label>
+        {{ form.last_name }}
+        {# <input id="id_last_name" maxlength="100" name="last_name" type="text">#}
+
+        {{ form.address.errors }}
+        <label for="{{ form.address.id_for_label }}">Adresse</label>
+        {{ form.address }}
+        {# <textarea cols="40" id="id_address" name="address" rows="1"></textarea>#}
+
+
+        {{ form.address_city.errors }}
+        <label for="{{ form.address_city.id_for_label }}">Ville</label>
+        {{ form.address_city }}
+        {# <input id="id_address_city" maxlength="100" name="address_city" type="text">#}
+
+
+        {{ form.mobile.errors }}
+        <label for="{{ form.mobile.id_for_label }}">mobile</label>
+        {{ form.mobile }}
+        {# <input id="id_mobile" maxlength="20" name="mobile" type="text">#}
+
+         {{ form.email.errors }}
+        <label for="{{ form.email.id_for_label }}">email</label>
+        {{ form.email }}
+        {# <input id="id_email" maxlength="254" name="email" type="email">#}
+
+        {{ form.message.errors }}
+        <label for="{{ form.message.id_for_label }}">message</label>
+        {{ form.message }}
+        {# <textarea cols="40" id="id_message" name="message" rows="5"></textarea>#}
+
+        <button type="submit" class="button">Réserver ma place pour cette conférence !</button>
+    </form>
+{% endif %}
+

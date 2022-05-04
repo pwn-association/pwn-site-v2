@@ -1,0 +1,5 @@
+Message du site [PWN]
+
+{% for dic in ordered_data %}{% for key, value in dic.items %}
+    {{ key }}: {{ value }}
+{% endfor %}{% endfor %}

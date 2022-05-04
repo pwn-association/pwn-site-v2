@@ -1,0 +1,25 @@
+# use glob syntax.
+syntax: glob
+
+*.log
+*.swp
+*.swo
+*.pyc
+secret_key
+/htmlcov/
+public/
+ignore/
+/media/
+old/
+old-*
+.sass-cache/
+.idea/
+supervisord.log
+supervisord.pid
+local_prod.py
+local_recette.py
+local_staging.py
+local.py
+settings/env.py
+db.sqlite3
+

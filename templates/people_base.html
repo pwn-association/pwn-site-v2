@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% load cms_tags menu_tags i18n %}
+{% load sekizai_tags  staticfiles %}
+
+
+<section id="list-all-events">
+  <div class="container">
+    <h2 class="section-title section-title-centered">
+      <span class="before"></span>
+      <span class="center">{% placeholder "Titre de liste event" %}</span>
+      <span class="after"></span>
+    </h2>
+    <div class="clear"></div>
+    {% block container %}
+        {% placeholder "contenu" %}
+    {% endblock %}
+
+    <div class="align-center">
+      <a href="#" class="button button-white">En savoir plus</a>
+    </div>
+
+  </div>
+
+</section>

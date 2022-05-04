@@ -1,0 +1,41 @@
+{
+  "name": "pwn-website",
+  "version": "1.0.0",
+  "description": "Front-end build for pwn-website project",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/cojonez/j1prim.git"
+  },
+  "author": "Enguerran Weiss / Samuel Sorin",
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^13.0.1",
+    "gulp": "^3.9.1",
+    "gulp-compass": "^2.1.0",
+    "gulp-if": "^2.0.1",
+    "gulp-ignore": "^2.0.1",
+    "gulp-jshint": "^2.0.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.4",
+    "gulp-util": "^3.0.7",
+    "jquery": "^3.1.0",
+    "jquery-placeholder": "^2.3.1",
+    "jshint": "^2.9.2",
+    "lodash.assign": "^4.0.9",
+    "remodal": "^1.1.0",
+    "slick-carousel": "^1.6.0",
+    "tooltipster": "^4.1.4",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0",
+    "yargs": "^4.8.0"
+  }
+}

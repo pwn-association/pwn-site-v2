@@ -1,0 +1,97 @@
+{% load cms_tags menu_tags i18n sekizai_tags  staticfiles %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1,requiresActiveX=true">
+
+	{% include "seo.html" %}
+
+	<!-- /// Favicons ////////  -->
+	<link rel="shortcut icon" href="{% static "core/img/favicon.png" %}">
+
+	<!-- /// Template CSS ////////  -->
+	<link rel="stylesheet" href="{% static "core/css/app.css" %}">
+
+	{% render_block "css" %}
+</head>
+
+
+
+<body class="{% block bodyclass %}{% endblock %}">
+    {% cms_toolbar %}
+
+    {%  include 'noscript.html' %}
+
+    <!-- HEADER  ################################################################################ -->
+    	<header id="main-header">
+				<div class="container">
+					<div id="main-logo" class="left">
+						<a href="/"><img src="{% static "core/img/logo-pwn.svg" %}" alt="PWN - Poitiers Web Nerdz" /></a>
+
+						<span class="logo-url no-mobile">// poitiers web nerdz //</span>
+					</div>
+						<button type="button" id="toggle-menu-mobile" class="no-desktop">menu</button>
+					<nav id="main-menu" role="navigation" class="right no-mobile">
+						<ul>
+							{% show_menu 0 0 100 100 %}
+						</ul>
+					</nav>
+
+				</div>
+    	</header><!-- end #header -->
+    <!-- END HEADER  ################################################################################ -->
+
+
+
+	<!-- CONTENT  ################################################################################### -->
+		<section id="main-content" role="main">
+			{% block container %}{% endblock %}
+        {% block content %}{% endblock %}
+    	</section>
+	<!-- END CONTENT  ############################################################################### -->
+
+
+	<!-- SPONSORS  #################################################################################### -->
+		<section id="main-sponsors" class="section-white">
+			<p class="container align-center">Ils nous soutiennent</p>
+				<ul class="container align-center">
+					<li><a href="http://www.serli.com/" target="_blank"><img src="{% static "core/img/serli.jpg" %}" alt="Université de Poitiers"></a></li>
+					<li><a href="http://www.univ-poitiers.fr/" target="_blank"><img src="{% static "core/img/univ-poitiers.png" %}" alt="Société SERLI"></a></li>
+				</ul>
+		</section>
+  <!-- END SPONSORS ################################################################################# -->
+
+
+	<!-- FOOTER  #################################################################################### -->
+		<footer id="main-footer">
+			<p class="container align-center">
+				Site créé avec ❤ par <a href="https://www.enguerranweiss.fr" target="_blank">Enguerran Weiss</a> et <a href="https://samuelsorin.fr" target="_blank">Samuel Sorin</a>
+			</p>
+		</footer><!-- end #footer -->
+    <!-- END FOOTER ################################################################################# -->
+
+
+
+
+	<!-- SCRIPT  #################################################################################### -->
+
+	<script src="{% static "core/js/app.js" %}"></script>
+
+	{% render_block "js" %}
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-84874571-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+</body>
+</html>

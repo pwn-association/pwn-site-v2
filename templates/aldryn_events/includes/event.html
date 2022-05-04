@@ -1,0 +1,126 @@
+{% load i18n cms_tags sekizai_tags thumbnail tz %}
+
+<article class="article event col col-2 col-alone
+    {% if is_ongoing_events %} events-ongoing{% endif %}
+    {% if is_upcoming_events %} events-upcoming{% endif %}
+    {% if event.is_outdated %} events-outdated{% endif %}">
+
+    {% if event.image %}
+        <div class="thumb">
+            {% if not detail_view %}
+                <a href="{{ event.get_absolute_url }}">
+            {% endif %}
+            <img src="{{ event.image.url }}" alt="{{ event.image.alt }}">
+            {% if not detail_view %}
+                </a>
+            {% endif %}
+            {% if event.detail_link %}
+
+                <a href="{% render_model event "detail_link" "detail_link" "" %}" class="youtube-block" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 502 210" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="a" d="M0.06 0.119L0.06 136.856 120 136.856 120 0.119 0.06 0.119z"/><path id="c" d="M299.023 105.4315L299.023 209.94 0.414 209.94 0.414 0.923 299.023 0.923 299.023 105.4315z"/></defs><g fill="none" fill-rule="evenodd"><path fill="#FFF" d="M187,170.119 L168,170.119 L168,159.119 C160.797,167.375 154.691,171.545 148.035,171.545 C142.195,171.545 138.14,168.79 136.109,163.813 C134.875,160.786 134,156.061 134,149.119 L134,69.119 L153,69.119 L153,144.119 L153,151.119 C153.443,153.926 154.635,154.951 157.051,154.951 C160.688,154.951 163.979,151.791 168,146.119 L168,69.119 L187,69.119 L187,170.119"/><g transform="translate(0 35)"><mask id="b" fill="#fff"><use xlink:href="#a"/></mask><path fill="#FFF" d="M101 105.119C102 115.119 98.898 120.081 92.998 120.081 87.099 120.081 84 115.119 85 105.119L85 65.119C84 55.119 87.1 50.432 93 50.432 98.9 50.432 102.01 55.119 101.01 65.119L101 105.119zM120 67.119C120 56.326 117.832 48.221 114 43.119 108.938 36.211 101 33.383 93 33.383 83.945 33.383 77.054 36.211 72 43.119 68.107 48.221 66.019 56.414 66.019 67.207L66 103.119C66 113.852 67.857 121.268 71.751 126.32 76.805 133.207 85 136.856 93 136.856 101 136.856 109.339 133.207 114.4 126.32 118.232 121.268 120 113.852 120 103.119L120 67.119 120 67.119zM45 80.119L45 135.119 25 135.119 25 80.119C25 80.119 4.275 12.688 0 .119L21 .119 35.035 52.795 49 .119 70 .119 45 80.119" mask="url(#b)"/></g><path fill="#FFF" d="M382.422,85.183 C379.441,85.183 376.027,86.756 373,89.744 L372.979,150.39 C376.007,153.417 379.441,154.951 382.422,154.951 C387.643,154.951 390,151.119 390,141.119 L390,98.119 C390,88.119 387.643,85.183 382.422,85.183"/><g transform="translate(202)"><mask id="d" fill="#fff"><use xlink:href="#c"/></mask><path fill="#FFF" d="M255,97.203 C255,87.96 252.611,85.183 246.609,85.183 C240.563,85.183 238,87.732 238,97.078 L238,108.138 L255,108.119 L255,97.203" mask="url(#d)"/><path fill="#FFF" d="M246.777,154.951 C251.234,154.951 253.832,152.527 254.865,147.688 C255.033,146.701 255.001,142.383 255.001,135.119 L274,135.119 L274,137.953 C274,143.787 273.52,147.916 273.357,149.729 C272.746,153.742 271.324,157.373 269.123,160.576 C264.115,167.832 256.686,171.408 247.227,171.408 C237.756,171.408 230.547,168 225.313,161.172 C221.467,156.172 219,148.738 219,138.119 L219,103.119 C219,92.439 221.244,84.183 225.09,79.129 C230.326,72.291 237.535,68.672 246.777,68.672 C255.859,68.672 263.068,72.291 268.143,79.129 C271.928,84.183 274.031,91.996 274.031,102.676 L274.035,123.119 L238,123.119 L238,141.077 C237.938,150.305 240.563,154.951 246.777,154.951 Z M207,140.119 C207,149.361 206.209,155.883 205,160.119 C202.584,167.549 197.316,171.408 190.107,171.408 C183.67,171.408 177.074,167.535 171.025,160.051 L171,170.119 L153,170.119 L153,36.119 L171,36.119 L170.979,79.807 C176.827,72.611 183.447,68.515 190.107,68.515 C197.316,68.515 202.162,72.679 204.578,80.164 C205.787,84.183 207,90.654 207,100.119 L207,140.119 Z M138,170.119 L119,170.119 L119,159.119 C111.797,167.375 105.691,171.545 99.035,171.545 C93.195,171.545 89.14,168.79 87.109,163.813 C85.875,160.786 85,156.061 85,149.119 L85,70.119 L104,70.119 L104,144.119 L104,151.119 C104.443,153.926 105.635,154.951 108.051,154.951 C111.688,154.951 114.979,151.791 119,146.119 L119,70.119 L138,70.119 L138,170.119 Z M66,170.119 L46,170.119 L46,55.119 L25,55.119 L25,36.14 L88,36.119 L88,55.119 L66,55.119 L66,170.119 Z M296.041,46.027 C296.041,46.027 293.123,25.542 284.17,16.521 C272.816,4.682 260.086,4.622 254.25,3.93 C212.465,0.923 149.785,0.923 149.785,0.923 L149.654,0.923 C149.654,0.923 86.973,0.923 45.188,3.93 C39.35,4.622 26.625,4.682 15.268,16.521 C6.314,25.542 3.4,46.027 3.4,46.027 C3.4,46.027 0.414,70.082 0.414,94.139 L0.414,116.692 C0.414,140.746 3.4,164.801 3.4,164.801 C3.4,164.801 6.314,185.285 15.268,194.307 C26.625,206.149 41.549,205.772 48.193,207.012 C72.082,209.295 149.719,210 149.719,210 C149.719,210 212.465,209.906 254.25,206.901 C260.086,206.207 272.816,206.149 284.17,194.307 C293.123,185.285 296.041,164.801 296.041,164.801 C296.041,164.801 299.023,140.746 299.023,116.692 L299.023,94.139 C299.023,70.082 296.041,46.027 296.041,46.027 L296.041,46.027 Z" mask="url(#d)"/></g></g></svg>
+                </a>
+
+            {% endif %}
+
+
+
+
+            <h2 class="event-title">
+                {% if not detail_view %}
+                    <a href="{{ event.get_absolute_url }}">{{ event.title }}</a>
+                {% else %}
+                    {{ event.title }}
+                {% endif %}
+                <span class="author-by">par</span>
+                <span class="author-name">
+                  {% for person in event.intervenant.all %}
+                    {{ person.name }}
+                  {% endfor %}
+                </span>
+            </h2>
+        </div>
+    {% endif %}
+
+    <div class="event-description">
+      <h3 class="event-subtitle">infos pratiques</h3>
+      <ul>
+        {% if event.location %}
+        <li><span>Lieu : </span>{% if event.location_lat and event.location_lng %}
+            <a href="http://maps.google.com?q={{ event.location_lat }},{{ event.location_lng }}" target="_blank">
+        {% else %}
+            <a href="http://maps.google.com?q={{ event.location|slugify }}" target="_blank">
+        {% endif %}
+            {{ event.location }}
+        </a></li>
+        {% endif %}
+        <li><span>Date et heure : </span>{% if not detail_view %}
+            {% if event.start_time %} {{ event.start_at|date:"H:i" }}{% endif %}
+            {% if event.end_time %} – {{ event.end_at|date:"H:i" }}{% endif %}
+        {% else %}
+            {{ event.start_date|date }}
+            {% if event.start_time %} {% trans "at" %} {{ event.start_at|date:"H:i" }}{% endif %}
+            {% if event.end_date %}
+                 – {{ event.end_date|date }}
+                {% if event.end_time %} {% trans "at" %} {{ event.end_at|date:"H:i" }}{% endif %}
+            {% endif %}
+        {% endif %}</li>
+      </ul>
+
+
+
+      <h3 class="event-subtitle">description de l'intervention</h3>
+      {% if event.short_description %}
+          {% render_model event "short_description" "short_description" "" %}
+      {% endif %}
+
+      {% if detail_view %}
+          {% render_placeholder event.description %}
+      {% endif %}
+
+
+      <h3 class="event-subtitle">description de l'intervenant</h3>
+
+      {% for person in event.intervenant.all %}
+          <div class="event-speaker">
+            <div class="person-name">
+              <span>Nom : </span>  {{ person.name }}
+
+            </div>
+
+
+              {% if person.email %}
+              <div class="person-mail">
+                  <span>{% trans "Email:" %}</span>
+                  <a href="mailto:{{ person.email }}">{{ person.email }}</a>
+                </div>
+              {% endif %}
+              {% if person.website %}
+              <div class="person-link">
+                  <span>{% trans "Website:" %}</span>
+                  <a href="{{ person.website }}" target="_blank">{{ person.website }}</a><br>
+              </div>
+              {% endif %}
+              {% if person.description %}
+                <div class="person-description">
+                  <span>Description : </span>
+                  {{ person.description|safe }}
+                </div>
+              {% endif %}
+
+
+              {% if event.detail_link %}
+                <h3 class="event-subtitle">Revoir l'événement</h3>
+                  <span>Youtube : </span>
+                  <a href="{% render_model event "detail_link" "detail_link" "" %}"  target="_blank">{% render_model event "detail_link" "detail_link" "" %}</a>
+              {% endif %}
+
+
+          </div>
+      {% endfor %}
+    </div>
+
+    <!-- {#<div class="button-container align-center">
+      <a href="#" class="scroll-to button" data-target="form-reservation">Ça me botte, je m'inscris !</a>
+    </div>#} -->
+
+</article>

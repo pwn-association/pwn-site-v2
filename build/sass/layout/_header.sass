@@ -1,0 +1,40 @@
+#main-header
+  padding: 15px 0
+  background: $color1
+  position: fixed
+  z-index: 100
+  top: 0
+  left: 0
+  right: 0
+  +box-shadow(0 1px 2px rgba(0,0,0,.1))
+  #main-logo
+    margin-top: 5px
+    img
+      max-width: 55px
+      vertical-align: bottom
+
+    .logo-name, .logo-url
+      vertical-align: bottom
+      font-weight: 800
+      font-size: em(12)
+      position: relative
+      top: -6px
+    .logo-name
+      color: $color3
+
+    .logo-url
+      color: $color2
+  & + section
+    margin-top: 50px
+#toggle-menu-mobile
+  border: 0
+  font-size: 12px
+  padding: 4px 10px 6px
+  +border-radius(5px)
+  background: $color0
+  color: $color1
+  font-weight: 600
+  float: right
+.cms-toolbar-expanded
+  #main-header
+    top: 50px

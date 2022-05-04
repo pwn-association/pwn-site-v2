@@ -1,0 +1,27 @@
+{% load cms_tags i18n %}
+
+{% trans '// poitiers web nerdz //' as kw %}
+{% with site_name='pwn // poitiers web nerdz //' site_url='http://pwn-association.org' site_author='PWN' site_keyword=kw %}
+
+	<title>{% if event %}{{ event.get_title | truncatechars_html:50 }}{% else %}{% page_attribute page_title %}{% endif %} - {{ site_name }}</title>
+    <meta name="description" content="{% if event %}{{ event.short_description|striptags|truncatechars_html:150 }}{% else %}{% page_attribute meta_description %}{% endif %}">
+    <meta name="author" content="{{ site_author }}" />
+
+    <meta property="og:locale" content="{% ifequal request.LANGUAGE_CODE "fr" %}fr_FR{% else %}en_US{% endifequal %}" />
+    <meta property="og:title" content="{% if event %}{{ event.get_title|truncatechars_html:50 }}{% else %}{% page_attribute page_title %}{% endif %} | {{ site_name }}" />
+    <meta property="og:description" content="{% if event %}{{ event.short_description|striptags|truncatechars_html:150 }}{% else %}{% page_attribute meta_description %}{% endif %}" />
+    <meta property=”og:site_name” content="{{ site_name }}" />
+    <meta property="og:url" content="{{ site_url }}{{ request.path }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="{% if event %}http://pwn-association.org{{ event.image.url }}{% else %}http://pwn-association.org/static/core/img/img-share.jpg{% endif %}" />
+
+    <meta name="DC.Title" lang="{{ request.LANGUAGE_CODE }}" content="{% if event %}{{ event.get_title | truncatechars_html:50 }}{% else %}{% page_attribute page_title %}{% endif %} | {{ site_name }}" />
+
+    <!-- non odp -->
+    <meta name="robots" content="noodp" >
+    <meta name="robots" content="noodp" >
+    <meta name="Slurp" content="noodp" >
+    <meta name="bingbot" content="noodp" >
+    <meta name="robots" content="all" />
+
+{% endwith %}
