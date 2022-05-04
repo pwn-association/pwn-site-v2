@@ -36,7 +36,9 @@ Install
 [
     pip install -r requirements.txt
 ]
-#) démarrer le serveur
+#) Copier le fichier core/settings/local_dev.py et le coller dans le même repertoire, sous le nom local.py 
+
+#) Démarrer le serveur
 [
     python manage.py runserver
 ]
