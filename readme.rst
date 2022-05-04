@@ -16,6 +16,7 @@ pour plus de detail voir requirements.txt
 Pré-requis :
 ------------
 Python >= 3.8
+PostgreSQL >= ??
 
 Install
 -------
