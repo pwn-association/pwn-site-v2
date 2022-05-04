@@ -33,7 +33,7 @@ Install
 #) Si le virtualenv est correctement activé vous devez avoir le nom de l'env en parenthèse en début de ligne dans le terminal
 #) Se placer dans le dossier de travail (pwn_v2) et installer les requirements :
 [
-    pip install -r requirement.txt
+    pip install -r requirements.txt
 ]
 #) démarrer le serveur
 [
