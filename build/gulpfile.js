@@ -1,110 +1,97 @@
-'use strict';
+// Initialize modules
+// Importing specific gulp API functions lets us write them below as series() instead of gulp.series()
+const { src, dest, watch, series, parallel } = require('gulp');
+// Importing all the Gulp-related packages we want to use
+const sass = require('gulp-sass')(require('sass'));
+const concat = require('gulp-concat');
+const terser = require('gulp-terser');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const replace = require('gulp-replace');
+const browsersync = require('browser-sync').create();
 
-// Require modules
-let watchify = require('watchify'),
-    browserify = require('browserify'),
-    gulp = require('gulp'),
-    notify = require('gulp-notify'),
-    source = require('vinyl-source-stream'),
-    buffer = require('vinyl-buffer'),
-    sourcemaps = require('gulp-sourcemaps'),
-    assign = require('lodash.assign'),
-    gutil = require('gulp-util'),
-    jshint = require('gulp-jshint'),
-    uglify = require('gulp-uglify'),
-    compass = require('gulp-compass'),
-    livereload = require('gulp-livereload'),
-    plumber = require('gulp-plumber'),
-    ignore = require('gulp-ignore'),
-    argv = require('yargs').argv,
-    gulpif = require('gulp-if');
+// File paths
+const files = {
+	scssPath: './sass/**/*.scss',
+	jsPath: './js/**/*.js',
+    distPath: '../core/static/core',
+};
 
-// Project variables & Watchify conf
-let distFolder = '../core/static/core',
-    buildFolder = '../build',
-    customOpts = {
-        entries: [buildFolder + '/js/app.js'],
-        debug: true
-    },
-    opts = assign({}, watchify.args, customOpts),
-    b = watchify(browserify(opts));
-
-// -- TASKS --
-
-
-// JS Task
-gulp.task('javascript', bundle);
-b.on('update', bundle);
-b.on('log', gutil.log);
-
-function bundle() {
-
-    return b.bundle()
-        // log errors if they happen
-        .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-        .pipe(source('app.js'))
-        // optional, remove if you don't need to buffer file contents
-        .pipe(buffer())
-        // .pipe(gulpif(argv.production, uglify()))
-        .pipe(uglify())
-        // optional, remove if you dont want sourcemaps
-        .pipe(sourcemaps.init({
-            loadMaps: true
-        })) // loads map from browserify file
-        // Add transformation tasks to the pipeline here.
-        .pipe(sourcemaps.write('./')) // writes .map file
-        .pipe(gulp.dest(distFolder + '/js'));
-
-
+// Sass task: compiles the style.scss file into style.css
+function scssTask() {
+	return src(files.scssPath, { sourcemaps: true }) // set source and turn on sourcemaps
+		.pipe(sass()) // compile SCSS to CSS
+		.pipe(postcss([autoprefixer(), cssnano()])) // PostCSS plugins
+		.pipe(dest(`${files.distPath}/css`, { sourcemaps: '.' })); // put final CSS in dist folder with sourcemap
 }
 
-// Lint Task
-gulp.task('lint', function() {
-    return gulp.src(buildFolder + 'js/*.js')
+// JS task: concatenates and uglifies JS files to script.js
+function jsTask() {
+	return src(
+		[
+			files.jsPath,
+			//,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
+		],
+		{ sourcemaps: true }
+	)
+		.pipe(concat('all.js'))
+		.pipe(terser())
+		.pipe(dest(`${files.distPath}/js`, { sourcemaps: '.' }));
+}
 
-    .pipe(jshint())
-        .pipe(jshint.reporter('default'))
-        .on('error', function(err) {
-            console.log(err);
-        });
-});
+// Browsersync to spin up a local server
+function browserSyncServe(cb) {
+	// initializes browsersync server
+	browsersync.init({
+        proxy: "localhost:8000",
+		notify: {
+			styles: {
+				top: 'auto',
+				bottom: '0',
+			},
+		},
+	});
+	cb();
+}
+function browserSyncReload(cb) {
+	// reloads browsersync server
+	browsersync.reload();
+	cb();
+}
 
+// Watch task: watch SCSS and JS files for changes
+// If any change, run scss and js tasks simultaneously
+function watchTask() {
+	watch(
+		[files.scssPath, files.jsPath],
+		{ interval: 1000, usePolling: true }, //Makes docker work
+		series(parallel(scssTask, jsTask))
+	);
+}
 
-// Compile our Sass
-gulp.task('compass', function() {
-    return gulp.src(buildFolder + 'sass/*.sass')
-        .pipe(plumber())
-        .pipe(compass({
-            style: argv.production ? 'compressed' : 'expanded',
-            css: distFolder + '/css',
-            sass: buildFolder + '/sass',
-            image: distFolder + '/img',
-            generated_images_path: distFolder + '/img/sprites'
-        }))
-        .pipe(gulp.dest(distFolder + 'css'));
-});
+// Browsersync Watch task
+// Watch HTML file for change and reload browsersync server
+// watch SCSS and JS files for changes, run scss and js tasks simultaneously and update browsersync
+function bsWatchTask() {
+	watch(
+		[files.scssPath, files.jsPath],
+		{ interval: 1000, usePolling: true }, //Makes docker work
+		series(parallel(scssTask, jsTask), browserSyncReload)
+	);
+}
 
+// Export the default Gulp task so it can be run
+// Runs the scss and js tasks simultaneously
+// then runs watch task
+exports.default = parallel(scssTask, jsTask);
 
+exports.watch = series(parallel(scssTask, jsTask), watchTask);
 
-// Watch Files For Changes
-gulp.task('watch', function() {
-    livereload.listen();
-
-
-    gulp.watch([distFolder + '/templates/*.html'], function(event) {
-        gulp.src(event.path)
-            .pipe(plumber())
-            .pipe(livereload())
-            .pipe(notify({
-                title: 'Gulp notice',
-                message: event.path.replace(__dirname, '').replace(/\\/g, '/') + ' was ' + event.type + ' and reloaded'
-            }));
-    });
-    gulp.watch(buildFolder + '/js/*.js', ['lint', 'javascript']);
-    gulp.watch(buildFolder + '/sass/*.{sass,scss}', ['compass']);
-    gulp.watch(buildFolder + '/sass/**/*.{sass,scss}', ['compass']);
-});
-
-
-// Default Task
-gulp.task('default', ['lint', 'compass', 'javascript']);
+// Runs all of the above but also spins up a local Browsersync server
+// Run by typing in "gulp bs" on the command line
+exports.bs = series(
+	parallel(scssTask, jsTask),
+	browserSyncServe,
+	bsWatchTask
+);

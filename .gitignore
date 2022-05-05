@@ -22,4 +22,4 @@ local_staging.py
 local.py
 settings/env.py
 db.sqlite3
-
+node_modules
