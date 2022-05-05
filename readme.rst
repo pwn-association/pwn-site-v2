@@ -36,7 +36,7 @@ Install
 [
     pip install -r requirements.txt
 ]
-#) Copier le fichier core/settings/local_dev.py et le coller dans le même repertoire, sous le nom local.py 
+#) Copier le fichier core/settings/local_dev.py et le coller dans le même repertoire, sous le nom local.py et y inscrire, après les imports SITE_ID=1
 
 #) Démarrer le serveur
 [
