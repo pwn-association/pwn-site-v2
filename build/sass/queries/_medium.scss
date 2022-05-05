@@ -1,0 +1,26 @@
+.no-mobile {
+  display: none;
+}
+.no-desktop {
+  display: block;
+}
+#toggle-menu-mobile {
+  display: inline-block;
+}
+#main-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.section-title.section-title-centered {
+  span.before,
+  span.after {
+    display: none;
+  }
+}
+.col {
+  width: 50%;
+  &.col-2 {
+    width: 90%;
+  }
+}
