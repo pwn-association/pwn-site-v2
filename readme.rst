@@ -16,6 +16,7 @@ pour plus de detail voir requirements.txt
 Pré-requis :
 ------------
 Python >= 3.8
+PostgreSQL >= ??
 
 Install
 -------
@@ -33,9 +34,11 @@ Install
 #) Si le virtualenv est correctement activé vous devez avoir le nom de l'env en parenthèse en début de ligne dans le terminal
 #) Se placer dans le dossier de travail (pwn_v2) et installer les requirements :
 [
-    pip install -r requirement.txt
+    pip install -r requirements.txt
 ]
-#) démarrer le serveur
+#) Copier le fichier core/settings/local_dev.py et le coller dans le même repertoire, sous le nom local.py 
+
+#) Démarrer le serveur
 [
     python manage.py runserver
 ]
