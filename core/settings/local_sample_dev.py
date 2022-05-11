@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from core.settings.apps import *
 
+SITE_ID = 1
 ALLOWED_HOSTS = []
 LOCAL_SETTINGS = True
 DEBUG = True

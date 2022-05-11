@@ -38,13 +38,25 @@ Install
     pip install -r requirements.txt
     ```
 
-7. Copier le fichier **core/settings/local_dev.py** et le coller dans le même repertoire, sous le nom **local.py** et y inscrire, après les *"imports"* **SITE_ID=1**
+7. Dupliquer le fichier **core/settings/local_dev.py** sous le nom **local.py** 
 
-8. Démarrer le serveur
+9. Démarrer le serveur
     ```
     python manage.py runserver
     ```
+
+Créer une nouvelle base de données
+----------------------------------
+2. Installer les tables dans la db
+   ```
+    python manage.py migrate
+    ```
    
+3. Créer un super utilisateur
+    ```
+    python manage.py createsuperuser
+    ```
+
 Utilisation
 -----------
 Une fois le projet installé, vous pouvez le relancer :

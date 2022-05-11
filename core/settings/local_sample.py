@@ -2,6 +2,7 @@
 # Local settings for django_starter_tmpl project core project.
 from core.settings.apps import *
 
+SITE_ID = 1
 DEBUG = False
 DEBUG_TOOLBAR = False
 ALLOWED_HOSTS = [{ALLOWED_HOSTS}]
