@@ -1,0 +1,38 @@
+{% load i18n %}
+
+{% comment %}
+champs dispo :
+    {% for season in season_list %}
+        {{ season.name }} :: <img src="{{ season.image.url }}" />
+        {{ season.start_date }}
+        {{ season.end_date }}
+    {% endfor %}
+{% endcomment %}
+
+{% block pwn_event_content %}
+
+    <h2>{% trans "Inconming Events" %} ({{ actual_season }})</h2>
+    <ul>
+    {%  for event in events %}
+        <li><a href='{{ event.get_absolute_url }}'>{{ event.title }}</a></li>
+    {% endfor %}
+    </ul>
+
+
+    <h2>{% trans "Past Events" %}</h2>
+
+    {%  for season in past_seasons %}
+        <h3>{{ season }}</h3>
+        {% for event in season.events.all reversed %}
+            {% if season != actual_season %}
+                <li><a href='{{ event.get_absolute_url }}'>{{ event.title }}</a></li>
+            {% else %}
+                {% if event.is_passed %}
+                    <li><a href='{{ event.get_absolute_url }}'>{{ event.title }}</a></li>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+
+
+{% endblock %}

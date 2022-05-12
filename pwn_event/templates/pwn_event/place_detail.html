@@ -1,0 +1,39 @@
+{% load i18n %}
+
+{% comment %}
+champs dispo :
+{{ place.image }} :: <img src="{{ place.image.url }}" />
+{{ place.description }}
+{{ place.address }}
+{{ place.address2 }}
+{{ place.zip }}
+{{ place.town }}
+{{ place.url }}
+{% endcomment %}
+
+
+{% block pwn_event_content %}
+    <h2>{% trans "Place"  %}: {{ place.title }}</h2>
+
+    <ul>
+        <li>{{ place.image }} :: <img src="{{ place.image.url }}" /></li>
+        <li>{{ place.description|safe }}</li>
+        <li>{{ place.address }}</li>
+        <li>{{ place.address2 }}</li>
+        <li>{{ place.zip }}</li>
+        <li>{{ place.town }}</li>
+        <li>{{ place.url }}</li>
+    </ul>
+
+    {% trans "Events in this place" %}:
+    <ul>
+    {% for event in event_list %}
+        <li><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></li>
+    {% empty %}
+        <li>{% trans "Sorry, no events in this place." %}</li>
+    {% endfor %}
+    </ul>
+
+    {% include "pwn_event/_paginator.html" %}
+{% endblock %}
+

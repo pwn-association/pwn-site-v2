@@ -1,0 +1,43 @@
+{% load i18n %}
+
+{% comment %}
+champs disponible :
+    {{ event.title }}
+    {{ event.image }} : <img src="{{ event.image.url }}" alt="{{ event.image_caption }}" />
+    {{ event.excerpt }}
+    {{ event.description }}
+    {{ event.date }}
+
+    {{ event.place }} + voir models.place pour les champs supplémentaire dispo
+
+    {{ event.speaker }}
+    {% for speaker in event.speakers.all %}
+        {{ speaker }} + voir models.place pour les champs supplémentaire dispo
+    {% endfor %}
+
+    {{ event.season }} + voir models.place pour les champs supplémentaire dispo
+{% endcomment %}
+
+{% block pwn_event_content %}
+    <h2>{%  trans "Events List" %}</h2>
+
+    <ul>
+    {% for event in event_list %}
+        <li>
+            <a href='{{ event.get_absolute_url }}'>{{ event.title }}</a>
+            <ul>
+                <li>{%  trans "Season" %}: {{ event.season }}</li>
+                <li>{{ event.date|date:"d/m/Y H:m" }}</li>
+                <li><a href="{{ event.place.get_absolute_url }}">{{ event.place }}</a> - {{ event.place.city }}({{ event.place.zip }})</li>
+                {% if event.excerpt %}
+                <li>{{ event.excerpt|safe }}</li>
+                {% endif %}
+            </ul>
+        </li>
+    {% empty %}
+        <li>{%  trans "No event yet." %}</li>
+    {% endfor %}
+    </ul>
+
+    {% include "pwn_event/_paginator.html" %}
+{% endblock %}

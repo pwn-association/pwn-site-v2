@@ -55,10 +55,12 @@ THIRD_PARTY_APPS = (
     # 'djangocms_video',
     # 'djangocms_googlemap',
     'djangocms_snippet',
+    'ckeditor',
 )
 
 LOCAL_APPS = (
     'core',
+    'pwn_event',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

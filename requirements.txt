@@ -10,3 +10,4 @@ djangocms-picture==4.0.*
 djangocms-video==3.0.*
 djangocms-googlemap==2.0.*
 djangocms-snippet==3.0.*
+django-ckeditor==6.4.*
