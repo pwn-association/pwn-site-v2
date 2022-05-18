@@ -13,6 +13,7 @@ from ckeditor.fields import RichTextField
 from ..models.place import Place
 from ..models.speaker import Speaker
 from ..models.season import Season
+from ..models.tag import Tag
 # from .managers import EventPublishedManager
 
 
@@ -25,6 +26,7 @@ class Event(models.Model):
     description = RichTextField(_('description'), blank=True, null=True)
     place = models.ForeignKey(Place, on_delete=models.PROTECT, verbose_name=_('place'), related_name="events")
     speakers = models.ManyToManyField(Speaker)
+    tags = models.ManyToManyField(Tag)
     date = models.DateTimeField(_('Event date'))
     season = models.ForeignKey(Season, on_delete=models.PROTECT, verbose_name=_('season'), related_name="events")
 
