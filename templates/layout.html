@@ -23,57 +23,58 @@
 
 
 <body class="{% block bodyclass %}{% endblock %}">
-    {% cms_toolbar %}
+	<div class="wrapper">
+		{% cms_toolbar %}
 
-    {%  include 'noscript.html' %}
-
-    <!-- HEADER  ################################################################################ -->
-    	<header id="main-header">
-				<div class="container">
-					<div id="main-logo" class="left">
-						<a href="/"><img src="{% static "core/img/logo-pwn.svg" %}" alt="PWN - Poitiers Web Nerdz" /></a>
-
-						<span class="logo-url no-mobile">// poitiers web nerdz //</span>
+		{%  include 'noscript.html' %}
+	
+		<!-- HEADER  ################################################################################ -->
+			<header id="main-header">
+					<div class="container">
+						<div id="main-logo" class="left">
+							<a href="/"><img src="{% static "core/img/logo-pwn.svg" %}" alt="PWN - Poitiers Web Nerdz" /></a>
+							<span class="logo-url no-mobile">// poitiers web nerdz //</span>
+						</div>
+							<button type="button" id="toggle-menu-mobile" class="no-desktop">menu</button>
+						<nav id="main-menu" role="navigation" class="right no-mobile">
+							<ul>
+								{% show_menu 0 0 100 100 %}
+							</ul>
+						</nav>
 					</div>
-						<button type="button" id="toggle-menu-mobile" class="no-desktop">menu</button>
-					<nav id="main-menu" role="navigation" class="right no-mobile">
-						<ul>
-							{% show_menu 0 0 100 100 %}
-						</ul>
-					</nav>
-
-				</div>
-    	</header><!-- end #header -->
-    <!-- END HEADER  ################################################################################ -->
-
-
-
-	<!-- CONTENT  ################################################################################### -->
-		<section id="main-content" role="main">
-			{% block container %}{% endblock %}
-        {% block content %}{% endblock %}
-    	</section>
-	<!-- END CONTENT  ############################################################################### -->
-
-
-	<!-- SPONSORS  #################################################################################### -->
-		<section id="main-sponsors" class="section-white">
-			<p class="container align-center">Ils nous soutiennent</p>
-				<ul class="container align-center">
-					<li><a href="http://www.serli.com/" target="_blank"><img src="{% static "core/img/serli.jpg" %}" alt="Université de Poitiers"></a></li>
-					<li><a href="http://www.univ-poitiers.fr/" target="_blank"><img src="{% static "core/img/univ-poitiers.png" %}" alt="Société SERLI"></a></li>
-				</ul>
-		</section>
-  <!-- END SPONSORS ################################################################################# -->
-
-
-	<!-- FOOTER  #################################################################################### -->
-		<footer id="main-footer">
-			<p class="container align-center">
-				Site créé avec ❤ par <a href="https://www.enguerranweiss.fr" target="_blank">Enguerran Weiss</a> et <a href="https://samuelsorin.fr" target="_blank">Samuel Sorin</a>
-			</p>
-		</footer><!-- end #footer -->
-    <!-- END FOOTER ################################################################################# -->
+			</header><!-- end #header -->
+		<!-- END HEADER  ################################################################################ -->
+	
+	
+	
+		<!-- CONTENT  ################################################################################### -->
+			<section id="main-content" role="main">
+				{% block container %}{% endblock %}
+			{% block content %}{% endblock %}
+			</section>
+		<!-- END CONTENT  ############################################################################### -->
+	
+	
+		<!-- SPONSORS  #################################################################################### -->
+			<section id="main-sponsors" class="section-white">
+				<p class="container align-center">Ils nous soutiennent</p>
+					<ul class="container align-center">
+						<li><a href="http://www.serli.com/" target="_blank"><img src="{% static "core/img/serli.jpg" %}" alt="Université de Poitiers"></a></li>
+						<li><a href="http://www.univ-poitiers.fr/" target="_blank"><img src="{% static "core/img/univ-poitiers.png" %}" alt="Société SERLI"></a></li>
+					</ul>
+			</section>
+	  <!-- END SPONSORS ################################################################################# -->
+	
+	
+		<!-- FOOTER  #################################################################################### -->
+			<footer id="main-footer">
+				<p class="container align-center">
+					Site créé avec ❤ par <a href="https://www.enguerranweiss.fr" target="_blank">Enguerran Weiss</a> et <a href="https://samuelsorin.fr" target="_blank">Samuel Sorin</a>
+				</p>
+			</footer><!-- end #footer -->
+		<!-- END FOOTER ################################################################################# -->
+	</div>
+   
 
 
 
