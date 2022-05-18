@@ -1,0 +1,25 @@
+{% load i18n %}
+
+{% comment %}
+champs dispo :
+    {{ tag.name }}
+    {{ tag.description }}
+    {{ tag.get_absolute_url }}
+{% endcomment %}
+
+
+{% block pwn_event_content %}
+    <h2>{% trans "Tag"  %}: {{ tag.name }}</h2>
+
+    {% trans "Events for this tag" %}:
+    <ul>
+    {% for event in event_list %}
+        <li><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></li>
+    {% empty %}
+        <li>{% trans "Sorry, no events for this tag." %}</li>
+    {% endfor %}
+    </ul>
+
+    {% include "pwn_event/_paginator.html" %}
+{% endblock %}
+

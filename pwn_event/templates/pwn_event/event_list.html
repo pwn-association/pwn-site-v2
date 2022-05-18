@@ -15,6 +15,10 @@ champs disponible :
         {{ speaker }} + voir models.place pour les champs supplémentaire dispo
     {% endfor %}
 
+    {% for tag in event.tags.all %}
+        {{ tag }} + voir models.place pour les champs supplémentaire dispo
+    {% endfor %}
+
     {{ event.season }} + voir models.place pour les champs supplémentaire dispo
 {% endcomment %}
 
@@ -28,6 +32,11 @@ champs disponible :
             <ul>
                 <li>{%  trans "Season" %}: {{ event.season }}</li>
                 <li>{{ event.date|date:"d/m/Y H:m" }}</li>
+                <li>
+                    {% for tag in event.tags.all %}
+                        <a href="{{ tag.get_absolute_url }}">{{ tag }}</a> {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </li>
                 <li><a href="{{ event.place.get_absolute_url }}">{{ event.place }}</a> - {{ event.place.city }}({{ event.place.zip }})</li>
                 {% if event.excerpt %}
                 <li>{{ event.excerpt|safe }}</li>

@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n pwn_event %}
 
 {% block catalog_content %}
     <h2>{% trans "PWN Events" %}</h2>
@@ -11,5 +11,9 @@
     </ul>
 
     <h3>{% trans "Last published creations" %}</h3>
-{#    {% get_last_creations %}#}
+    {% get_last_events 12 %}
+
+
+    <h3>{% trans "Published tags" %}</h3>
+    {% get_tags %}
 {% endblock %}

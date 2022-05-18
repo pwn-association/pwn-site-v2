@@ -7,6 +7,7 @@ from django.views.generic import TemplateView
 from .views.place import PlaceListView, PlaceDetailView
 from .views.speaker import SpeakerListView, SpeakerDetailView
 from .views.season import SeasonListView, SeasonDetailView
+from .views.tag import TagDetailView, TagListView
 from .views.event import EventListView, EventDetailView, EventBySeasonListView
 
 app_name = 'pwn_event'
@@ -23,6 +24,10 @@ urlpatterns = [
     # Season
     path(r'seasons/', SeasonListView.as_view(), name='season_list'),
     path(r'seasons/<slug:slug>/', SeasonDetailView.as_view(), name='season_detail'),
+
+    # TAg
+    path(r'tags/', TagListView.as_view(), name='tag_list'),
+    path(r'tags/<slug:slug>/', TagDetailView.as_view(), name='tag_detail'),
 
     # Events
     path('events/', EventListView.as_view(), name='event_list'),
