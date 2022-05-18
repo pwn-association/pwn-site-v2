@@ -4,6 +4,7 @@
   "description": "Front-end build for pwn-website project",
   "main": "gulpfile.js",
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "gulp bs",
     "start": "gulp watch",
@@ -16,12 +17,14 @@
   "author": "Enguerran Weiss / Samuel Sorin",
   "license": "MIT",
   "dependencies": {
-    "browserify": "^13.0.1",
     "jquery": "^3.1.0",
     "jquery-placeholder": "^2.3.1",
     "remodal": "^1.1.0",
     "slick-carousel": "^1.6.0",
     "tooltipster": "^4.1.4"
+  },
+  "resolutions": {
+    "graceful-fs": "^4.2.9"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",

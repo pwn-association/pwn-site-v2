@@ -8,7 +8,6 @@ const terser = require('gulp-terser');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
-const replace = require('gulp-replace');
 const browsersync = require('browser-sync').create();
 
 // File paths
@@ -35,7 +34,7 @@ function jsTask() {
 		],
 		{ sourcemaps: true }
 	)
-		.pipe(concat('all.js'))
+		.pipe(concat('app.js'))
 		.pipe(terser())
 		.pipe(dest(`${files.distPath}/js`, { sourcemaps: '.' }));
 }
