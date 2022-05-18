@@ -1,17 +1,3 @@
-/*
- *
- * Get JS dep with Browserify
- *
- */
-
-$ = require('jquery');
-
-/*
- *
- * Attach libs to our jQuery
- *
- */
-require('remodal');
 
 /*
  *
@@ -189,7 +175,7 @@ var app = window.app = {
 
 $(document).ready(function () {
   // DOM is ready
-
+  console.log('All right!');
   app.init();
   if($('.home').length){
     app.home.init();
