@@ -1,0 +1,29 @@
+{% load i18n %}
+
+{% comment %}
+champs dispo :
+    {% for tag in tag_list %}
+        {{ tag.name }}
+        {{ tag.description }}
+        {{ tag.get_absolute_url }}
+    {% endfor %}
+{% endcomment %}
+
+{% block pwn_event_content %}
+    <h2>{% trans "Tag List" %}</h2>
+
+    <ul>
+        <li>
+            <a href="{% url "pwn_event:tag_list" %}">{% trans "All tags" %}</a>
+        </li>
+
+        {% for tag in tag_list %}
+        <li>
+            <a href='{{ tag.get_absolute_url }}'>
+                <img src="{{ tag.image.url }}" />
+                {{ tag.name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
