@@ -23,3 +23,5 @@ local.py
 settings/env.py
 db.sqlite3
 node_modules
+venv-pwn
+.vscode
