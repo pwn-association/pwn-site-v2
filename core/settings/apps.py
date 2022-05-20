@@ -10,7 +10,7 @@ CMS_TEMPLATES = [
     ('standard.html', 'Page de contenu'),
     ('home.html', 'Page d\'accueil'),
     ('contact.html', 'Page de contact'),
-    ('event_base.html', u'Page des évenement'),
+    ('event_base.html', 'Page des évenement'),
 ]
 
 CMS_SEO_FIELDS = True

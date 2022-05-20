@@ -2,6 +2,10 @@
   #home-next-events {
     margin-top: 150px;
     padding-bottom: 50px;
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
   }
   .container {
     p {
