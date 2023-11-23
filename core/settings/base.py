@@ -52,8 +52,6 @@ THIRD_PARTY_APPS = (
     'djangocms_link',
     'djangocms_file',
     'djangocms_picture',
-    # 'djangocms_video',
-    # 'djangocms_googlemap',
     'djangocms_snippet',
     'ckeditor',
 )
