@@ -1,0 +1,68 @@
+{% load i18n %}
+
+{% comment %}
+champs disponible :
+    {{ event.title }}
+    {{ event.image }} : <img src="{{ event.image.url }}" alt="{{ event.image_caption }}" />
+    {{ event.excerpt }}
+    {{ event.description }}
+    {{ event.date }}
+
+    {{ event.place }} + voir models.place pour les champs supplémentaire dispo
+
+    {{ event.speaker }}
+    {% for speaker in event.speakers.all %}
+        {{ speaker }} + voir models.place pour les champs supplémentaire dispo
+    {% endfor %}
+
+    {% for tag in event.tags.all %}
+        {{ tag }} + voir models.place pour les champs supplémentaire dispo
+    {% endfor %}
+
+    {{ event.season }} + voir models.place pour les champs supplémentaire dispo
+{% endcomment %}
+
+{% block pwn_event_content %}
+    <h2>{%  trans "Event" %}: {{ event.title }}</h2>
+    <ul>
+        <li><a href="{{ event.season.get_absolute_url }}">{%  trans "Season" %} {{ event.season }}</a></li>
+        <li>{{ event.date|date:"d/m/Y H:m" }}</li>
+        <li><a href="{{ event.place.get_absolute_url }}">{{ event.place }}</a> - {{ event.place.city }}({{ event.place.zip }})</li>
+    </ul>
+
+    <h3>Tags</h3>
+    {% for tag in event.tags.all %}
+        <a href="{{ tag.get_absolute_url }}">{{ tag }}</a> {% if not forloop.last %}, {% endif %}
+    {% endfor %}
+
+    <h3>{%  trans "Speakers" %}:</h3>
+    {% for speaker in event.speakers.all %}
+        <a href="{{ speaker.get_absolute_url }}">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+
+    {% if event.image %}
+        <p><img src="{{ event.image.url }}" alt="{{ event.image_caption }}" /></p>
+    {% endif %}
+
+    <p>{{ event.description|safe }}</p>
+
+    {%  trans "Categories" %}:
+    {% for category in event.categories.all %}
+        <a href="{{ category.get_absolute_url }}">{{ category.title }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+
+
+    <ul>
+    {% if event.previous_entry %}
+        <li><a href="{% url 'pwn_event:event_detail' event.previous_entry.slug %}">prev</a></li>
+    {% endif %}
+
+    <li><a href="{% url 'pwn_event:event_list' %}">{% trans "back to the event list" %}</a></li>
+
+
+    {% if event.next_entry %}
+        <li><a href="{% url 'pwn_event:event_detail' event.next_entry.slug %}">next</a></li>
+    {% endif %}
+    </ul>
+{% endblock %}
+

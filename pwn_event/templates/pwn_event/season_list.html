@@ -1,0 +1,28 @@
+{% load i18n %}
+
+{% comment %}
+champs dispo :
+    {% for season in season_list %}
+        {{ season.name }} :: <img src="{{ season.image.url }}" />
+        {{ season.start_date }}
+        {{ season.end_date }}
+    {% endfor %}
+{% endcomment %}
+
+{% block pwn_event_content %}
+    <h2>{% trans "season List" %}</h2>
+
+    <ul>
+        <li>
+            <a href="{% url "pwn_event:season_list" %}">{% trans "All seasons" %}</a>
+        </li>
+
+        {% for season in season_list %}
+        <li>
+            <a href='{{ season.get_absolute_url }}'>
+                {{ season }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% load i18n pwn_event %}
+
+{% block catalog_content %}
+    <h2>{% trans "PWN Events" %}</h2>
+
+    <ul>
+        <li><a href="{% url "pwn_event:event_list" %}">Events</a></li>
+        <li><a href="{% url "pwn_event:place_list" %}">Places</a></li>
+        <li><a href="{% url "pwn_event:speaker_list" %}">Speakers</a></li>
+        <li><a href="{% url "pwn_event:season_list" %}">Seasons</a></li>
+    </ul>
+
+    <h3>{% trans "Last published creations" %}</h3>
+    {% get_last_events 12 %}
+
+
+    <h3>{% trans "Published tags" %}</h3>
+    {% get_tags %}
+{% endblock %}
