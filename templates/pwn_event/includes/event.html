@@ -1,0 +1,78 @@
+{% load i18n cms_tags sekizai_tags thumbnail tz %}
+
+<article class="article event col col-2 col-alone
+    {% if is_ongoing_events %} events-ongoing{% endif %}
+    {% if is_upcoming_events %} events-upcoming{% endif %}
+    {% if event.is_outdated %} events-outdated{% endif %}">
+
+
+    <div class="thumb">
+
+        <img src="{{ event.image.url }}" alt="{{ event.image.alt }}">
+
+        <h2 class="event-title">
+            {% render_model event "title" %}
+
+            {% if event.speakers.all %}
+                <span class="author-by">par</span>
+                <span class="author-name">
+                  {% for speaker in event.speakers.all %}
+                    {{ speaker }}
+                  {% endfor %}
+                </span>
+            {% endif %}
+        </h2>
+    </div>
+
+
+    <div class="event-description">
+      <h3 class="event-subtitle">infos pratiques</h3>
+      <ul>
+        {% if event.place %}
+        <li>
+            <span>Lieu : </span>
+            <a href="http://maps.google.com?q={{ event.place.get_address|slugify }}" target="_blank">{{ event.place.get_address }}</a>
+        </li>
+        {% endif %}
+
+        <li>
+            <span>Date et heure : </span>
+            {{ event.date|date:'d F Y' }}
+            {% if event.date %} à {{ event.date|date:"H:i" }}{% endif %}
+        </li>
+      </ul>
+
+      <h3 class="event-subtitle">description de l'intervention</h3>
+      {{ event.description|safe }}
+
+
+      <h3 class="event-subtitle">description de l'intervenant</h3>
+
+      {% for speaker in event.speakers.all %}
+          <div class="event-speaker">
+            <div class="person-name">
+              <span>Nom : </span>  {{ speaker }}
+            </div>
+
+            {% if speaker.url %}
+              <div class="person-link">
+                  <span>{% trans "Website:" %}</span>
+                  <a href="{{ speaker.url }}" target="_blank">{{ speaker.url }}</a><br>
+              </div>
+            {% endif %}
+
+            {% if speaker.biography %}
+                <div class="person-description">
+                  <span>Description : </span>
+                  {{ speaker.biography|safe }}
+                </div>
+            {% endif %}
+          </div>
+      {% endfor %}
+    </div>
+
+    <!-- {#<div class="button-container align-center">
+      <a href="#" class="scroll-to button" data-target="form-reservation">Ça me botte, je m'inscris !</a>
+    </div>#} -->
+
+</article>

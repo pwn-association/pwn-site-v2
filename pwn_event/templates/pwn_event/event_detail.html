@@ -12,11 +12,11 @@ champs disponible :
 
     {{ event.speaker }}
     {% for speaker in event.speakers.all %}
-        {{ speaker }} + voir models.place pour les champs supplémentaire dispo
+        {{ speaker }} + voir models.speaker pour les champs supplémentaire dispo
     {% endfor %}
 
     {% for tag in event.tags.all %}
-        {{ tag }} + voir models.place pour les champs supplémentaire dispo
+        {{ tag }} + voir models.tag pour les champs supplémentaire dispo
     {% endfor %}
 
     {{ event.season }} + voir models.place pour les champs supplémentaire dispo
