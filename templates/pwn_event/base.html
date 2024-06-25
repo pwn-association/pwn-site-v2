@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block bodyclass %}event-base{% endblock %}
+
+{% block container %}
+    <section id="events-container">
+        <div class="container">
+        {% block events_content %}{% endblock %}
+        </div>
+    </section>
+{% endblock container %}

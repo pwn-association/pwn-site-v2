@@ -25,6 +25,13 @@ class Place(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def get_address(self):
+        address_2 = ''
+        if self.address2:
+            address_2 = f" {self.address2}"
+        return f"{self.name}, {self.address }{address_2}, {self.zip} {self.city}"
+
     class Meta:
         verbose_name = _('Place')
         verbose_name_plural = _('Places')
