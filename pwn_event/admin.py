@@ -18,7 +18,7 @@ class EventAdmin(admin.ModelAdmin):
                 "fields": [
                     ("title", "is_publish"),
                     "date",
-                    "image", "excerpt", "description",
+                    "image", "description",
                     "place", "speakers", "tags",
                     "season",
                 ],
@@ -44,10 +44,37 @@ class EventAdmin(admin.ModelAdmin):
 class SpeakerAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', ]
     search_fields = ['first_name', 'last_name', ]
-
+    fieldsets = [
+            (
+                None,
+                {
+                    "fields": [
+                        ("first_name", "last_name"),
+                        "biography", "url"
+                    ],
+                },
+            ),
+        ]
 
 class PlaceAdmin(admin.ModelAdmin):
-    pass
+    fieldsets = [
+            (
+                None,
+                {
+                    "fields": [
+                        "name",
+                    ],
+                },
+            ),
+            (
+                "Adresse",
+                {
+                    "fields": [
+                        "address", "address2", "zip", "city",
+                    ],
+                },
+            ),
+        ]
 
 
 class SeasonAdmin(admin.ModelAdmin):
