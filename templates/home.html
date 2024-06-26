@@ -14,7 +14,8 @@
         </h2>
         <div class="clear"></div>
         <div class="grid event-grid">
-{#          {% placeholder "Liste events" %}#}
+          {# {% placeholder "Liste events" %}#}
+
           <article class="event grid-item col event-suggest">
             <div class="event-inner">
               <a href="/contact" class="link-overlay"></a>
@@ -28,17 +29,21 @@
               </div>
             </div>
           </article>
-             {% get_last_events 3 %} 
+
+          {% get_last_events 3 %}
+
         </div>
+
         <div class="align-center">
           <a href="/tous-les-evenements-pwn" class="button button-white">Voir tous les événements</a><br />
           <a href="https://calendar.google.com/calendar/embed?src=association.pwn%40gmail.com&ctz=Europe%2FParis" class="button button-white" target="_blank">Le calendrier sur Google Agenda</a>
         </div>
-
       </div>
 
     </section>
+
     <div class="clear"></div>
+
     <section class="block-text section-white">
       <div class="container">
         {% placeholder "content" %}
@@ -46,7 +51,6 @@
           <a href="/presentation" class="button button-green">En savoir plus</a>
         </div>
       </div>
-
     </section>
 
 {% endblock %}

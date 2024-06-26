@@ -31,8 +31,7 @@ def get_last_events(number=5, template='pwn_event/template_tags/last_events.html
 
     season = Season.objects.get(start_date__lte=now(), end_date__gte=now())
     last_event_time = now().replace(hour=00, minute=00, second=00)
-    events = Event.objects.filter(season=season, date__gte=last_event_time)[:number]
+    events = Event.published.filter(season=season, date__gte=last_event_time)[:number]
 
-    return {'template': template,
-            'events': events}
-            # 'events': Event.published.all()[:number]}
+    return {'template': template, 'events': events}
+

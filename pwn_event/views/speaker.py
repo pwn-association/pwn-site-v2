@@ -23,8 +23,7 @@ class SpeakerDetailView(ListView):
 
     def get_queryset(self, **kwargs):
         self.speaker = get_object_or_404(Speaker, slug=self.kwargs['slug'])
-        return Event.objects.filter(speakers=self.speaker)
-        # return Event.published.filter(categories=self.category)
+        return Event.published.filter(speakers=self.speaker)
 
     def get_context_data(self, **kwargs):
         context = super(SpeakerDetailView, self).get_context_data(**kwargs)

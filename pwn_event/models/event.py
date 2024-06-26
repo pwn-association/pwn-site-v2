@@ -14,7 +14,7 @@ from ..models.place import Place
 from ..models.speaker import Speaker
 from ..models.season import Season
 from ..models.tag import Tag
-# from .managers import EventPublishedManager
+from ..managers import EventPublishedManager
 
 
 class Event(models.Model):
@@ -37,7 +37,7 @@ class Event(models.Model):
                                            help_text=_('End date of publication.'))
 
     objects = models.Manager()
-    # published = EventPublishedManager()
+    published = EventPublishedManager()
 
     class Meta:
         get_latest_by = '-date'

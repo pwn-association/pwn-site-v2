@@ -23,8 +23,7 @@ class SeasonDetailView(ListView):
 
     def get_queryset(self, **kwargs):
         self.season = get_object_or_404(Season, slug=self.kwargs['slug'])
-        return Event.objects.filter(season=self.season)
-        # return Event.published.filter(categories=self.category)
+        return Event.published.filter(season=self.season)
 
     def get_context_data(self, **kwargs):
         context = super(SeasonDetailView, self).get_context_data(**kwargs)

@@ -28,7 +28,7 @@ class EventBySeasonListView(ListView):
     def get_queryset(self, **kwargs):
         self.season = Season.objects.get(start_date__lte=now(), end_date__gte=now())
         last_event_time = now().replace(hour=00, minute=00, second=00)
-        return Event.objects.filter(season=self.season, date__gte=last_event_time)
+        return Event.published.filter(season=self.season, date__gte=last_event_time)
 
     def get_context_data(self, **kwargs):
         context = super(EventBySeasonListView, self).get_context_data(**kwargs)
@@ -44,3 +44,6 @@ class EventDetailView(DetailView):
     model = Event
     context_object_name = "event"
     paginate_by = PAGINATION
+
+    def get_queryset(self, *args, **kwargs):
+        return Event.published.filter()
