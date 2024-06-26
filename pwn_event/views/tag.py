@@ -23,8 +23,7 @@ class TagDetailView(ListView):
 
     def get_queryset(self, **kwargs):
         self.tag = get_object_or_404(Tag, slug=self.kwargs['slug'])
-        return Event.objects.filter(tags=self.tag)
-        # return Event.published.filter(categories=self.category)
+        return Event.published.filter(tags=self.tag)
 
     def get_context_data(self, **kwargs):
         context = super(TagDetailView, self).get_context_data(**kwargs)

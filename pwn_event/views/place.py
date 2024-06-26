@@ -23,8 +23,7 @@ class PlaceDetailView(ListView):
 
     def get_queryset(self, **kwargs):
         self.place = get_object_or_404(Place, slug=self.kwargs['slug'])
-        return Event.objects.filter(place=self.place)
-        # return Event.published.filter(categories=self.category)
+        return Event.published.filter(place=self.place)
 
     def get_context_data(self, **kwargs):
         context = super(PlaceDetailView, self).get_context_data(**kwargs)
