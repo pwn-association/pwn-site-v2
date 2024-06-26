@@ -22,6 +22,9 @@ class EventBySeasonListView(ListView):
     template_name = 'pwn_event/event_season_list.html'
     context_object_name = "events"
 
+    def __init__(self):
+        self.season = None
+
     def get_queryset(self, **kwargs):
         self.season = Season.objects.get(start_date__lte=now(), end_date__gte=now())
         last_event_time = now().replace(hour=00, minute=00, second=00)

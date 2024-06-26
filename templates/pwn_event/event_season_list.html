@@ -5,6 +5,7 @@
 
 {% block events_content %}
 
+    {# --- ÉVÉNEMENTS À VENIR --- #}
     <h2 class="section-title section-title-centered">
       <span class="before"></span>
       <span class="center">liste des événements à venir</span>
@@ -14,37 +15,17 @@
     <div class="clear"></div>
     
     <div class="upcoming-events grid event-grid">
-    {% for event in events %}
-      <article class="event grid-item col">
-        <div class="event-inner">
-          <a href="{{ event.get_absolute_url }}" class="link-overlay"></a>
-          <div class="thumb" style="background-image: url('{{ event.image.url }}')">
-            <span class="date">
-              <span class="day">{{ event.date|date:"d" }}</span>
-              <span class="month">{{ event.date|date:"M" }}</span>
-              <span class="year">{{ event.date|date:"Y" }}</span>
-            </span>
-
-          </div>
-          <div class="event-description">
-            {% for tag in event.tags.all %}
-                <span class="event-tag">[{{ tag.name }}]</span>
-            {% endfor %}
-
-            <h3 class="event-name">
-              {{ event.title | truncatechars_html:50 }}
-            </h3>
-          </div>
-        </div>
-      </article>
-
-      {% empty %}
-          <p>Pas d'événement pour le moment :(</p>
-      {% endfor %}
+        {% for event in events %}
+            {% include "pwn_event/includes/event_list_item.html" %}
+        {% empty %}
+            <p>Pas d'événement pour le moment :(</p>
+        {% endfor %}
     </div>
     
     <div class="clear"></div>
 
+
+    {# --- ÉVÉNEMENTS PASSÉS --- #}
     <h2 class="section-title section-title-centered">
       <span class="before"></span>
       <span class="center">liste des événements passés</span>
@@ -53,37 +34,20 @@
 
     <div class="clear"></div>
 
-    <div class="upcoming-events grid event-grid">
+
     {%  for season in past_seasons %}
-    <h3>{{ season }}</h3>
-    {% for event in season.events.all reversed %}
-      <article class="event grid-item col">
-        <div class="event-inner">
-          <a href="{{ event.get_absolute_url }}" class="link-overlay"></a>
-          <div class="thumb" style="background-image: url('{{ event.image.url }}')">
-            <span class="date">
-              <span class="day">{{ event.date|date:"d" }}</span>
-              <span class="month">{{ event.date|date:"M" }}</span>
-              <span class="year">{{ event.date|date:"Y" }}</span>
-            </span>
+        <div class="past-events grid event-grid">
+        <h3 class="section-title section-title-centered">{{ season }}</h3>
 
-          </div>
-          <div class="event-description">
-            {% for tag in event.tags.all %}
-                <a href="{{ tag.get_absolute_url }}" class="event-tag">[{{ tag.name }}]</a>
-            {% endfor %}
-
-            <h3 class="event-name">
-              {{ event.title | truncatechars_html:50 }}
-            </h3>
-          </div>
+        {% for event in season.events.all %}
+            {% if event.is_passed %}
+            {% include "pwn_event/includes/event_list_item.html" %}
+            {% endif %}
+        {% empty %}
+            <p>Pas d'événement pour le moment :(</p>
+        {% endfor %}
         </div>
-      </article>
+    {% endfor %}
 
-      {% empty %}
-          <p>Pas d'événement pour le moment :(</p>
-      {% endfor %}
-      {% endfor %}
-    </div>
     <div class="clear"></div>
 {% endblock %}
