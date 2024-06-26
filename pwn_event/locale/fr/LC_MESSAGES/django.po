@@ -1,0 +1,302 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-26 09:36+0200\n"
+"PO-Revision-Date: 2024-06-26 09:32+0200\n"
+"Last-Translator: ssorin <ssorin@dwdlc.com>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4.3\n"
+
+#: cms_apps.py:10 cms_toolbars.py:15
+msgid "Conférences"
+msgstr "Conférences"
+
+#: cms_toolbars.py:20
+msgid "Liste des conférences"
+msgstr "Liste des conférences"
+
+#: cms_toolbars.py:26
+msgid "Ajouter une conférences"
+msgstr "Ajouter une conférences"
+
+#: cms_toolbars.py:33
+msgid "Lieux"
+msgstr "Lieux"
+
+#: cms_toolbars.py:38
+msgid "Conférenciers"
+msgstr "Conférenciers"
+
+#: cms_toolbars.py:43
+msgid "Saisons"
+msgstr "Saisons"
+
+#: models/event.py:22
+msgid "title"
+msgstr "titre"
+
+#: models/event.py:23 models/place.py:16 models/season.py:14
+#: models/speaker.py:17 models/tag.py:16
+msgid "slug"
+msgstr "slug"
+
+#: models/event.py:24 models/place.py:17 models/speaker.py:18
+msgid "image"
+msgstr "image"
+
+#: models/event.py:25
+msgid "excerpt"
+msgstr "extrait"
+
+#: models/event.py:26 models/tag.py:18
+msgid "description"
+msgstr "description"
+
+#: models/event.py:27
+msgid "place"
+msgstr "lieu"
+
+#: models/event.py:30
+msgid "Event date"
+msgstr "Date de la conférence"
+
+#: models/event.py:31 templates/pwn_event/season_detail.html:13
+msgid "season"
+msgstr "saison"
+
+#: models/event.py:33
+msgid "is publish"
+msgstr "est publié"
+
+#: models/event.py:34
+msgid "start publication"
+msgstr "début de la publication"
+
+#: models/event.py:35
+msgid "Start date of publication."
+msgstr "Date de début de publication."
+
+#: models/event.py:36
+msgid "end publication"
+msgstr "fin de publication"
+
+#: models/event.py:37
+msgid "End date of publication."
+msgstr "Date de fin de publication."
+
+#: models/event.py:44 templates/pwn_event/event_detail.html:26
+msgid "Event"
+msgstr "Conférence"
+
+#: models/event.py:45
+msgid "Events"
+msgstr "Conférences"
+
+#: models/place.py:15 models/season.py:13 models/tag.py:15
+msgid "name"
+msgstr "nom"
+
+#: models/place.py:18 models/speaker.py:19
+msgid "biography"
+msgstr "bio"
+
+#: models/place.py:19
+msgid "address"
+msgstr "adresse"
+
+#: models/place.py:20
+msgid "address complement"
+msgstr "complément d'adresse"
+
+#: models/place.py:21
+msgid "zip"
+msgstr "code postale"
+
+#: models/place.py:22
+msgid "city"
+msgstr "ville"
+
+#: models/place.py:23 models/speaker.py:20
+msgid "external link"
+msgstr "url"
+
+#: models/place.py:36 templates/pwn_event/place_detail.html:16
+msgid "Place"
+msgstr "Lieu"
+
+#: models/place.py:37
+msgid "Places"
+msgstr "Lieux"
+
+#: models/season.py:15
+#, fuzzy
+#| msgid "Event date"
+msgid "start date"
+msgstr "Date de début"
+
+#: models/season.py:16
+#, fuzzy
+#| msgid "Event date"
+msgid "end date"
+msgstr "Date de fin"
+
+#: models/season.py:20 templates/pwn_event/event_detail.html:28
+#: templates/pwn_event/event_list.html:33
+msgid "Season"
+msgstr "Saison"
+
+#: models/season.py:21
+msgid "Seasons"
+msgstr "Saisons"
+
+#: models/speaker.py:15
+msgid "last name"
+msgstr "nom"
+
+#: models/speaker.py:16
+msgid "first name"
+msgstr "prénom"
+
+#: models/speaker.py:26 templates/pwn_event/speaker_detail.html:16
+msgid "Speaker"
+msgstr "Speaker"
+
+#: models/speaker.py:27 templates/pwn_event/event_detail.html:38
+msgid "Speakers"
+msgstr "Speakers"
+
+#: models/tag.py:17
+msgid "Used to build the tag's URL."
+msgstr "Utilisé pour créer l'URL du tag."
+
+#: models/tag.py:24 templates/pwn_event/tag_detail.html:12
+msgid "Tag"
+msgstr "Tag"
+
+#: models/tag.py:25
+msgid "Tags"
+msgstr "Tags"
+
+#: templates/pwn_event/_paginator.html:7
+msgid "previous"
+msgstr "précédent"
+
+#: templates/pwn_event/_paginator.html:15
+msgid "next"
+msgstr "suivant"
+
+#: templates/pwn_event/event_detail.html:49
+msgid "Categories"
+msgstr "Catégories"
+
+#: templates/pwn_event/event_detail.html:60
+msgid "back to the event list"
+msgstr "retour à la liste des conférences"
+
+#: templates/pwn_event/event_list.html:26
+msgid "Events List"
+msgstr "Liste des conférences"
+
+#: templates/pwn_event/event_list.html:47
+msgid "No event yet."
+msgstr "Pas de conférence pour le moment."
+
+#: templates/pwn_event/event_season_list.html:14
+msgid "Inconming Events"
+msgstr "Conférences à venir"
+
+#: templates/pwn_event/event_season_list.html:22
+msgid "Past Events"
+msgstr "Conférences passées"
+
+#: templates/pwn_event/home.html:4
+msgid "PWN Events"
+msgstr "Conférences PWN"
+
+#: templates/pwn_event/home.html:13
+msgid "Last published creations"
+msgstr "Dernières conférences publiées"
+
+#: templates/pwn_event/place_detail.html:28
+msgid "Events in this place"
+msgstr "Conférences dans ce lieu"
+
+#: templates/pwn_event/place_detail.html:33
+msgid "Sorry, no events in this place."
+msgstr "Pas de conférence dans ce lieu pour le moment."
+
+#: templates/pwn_event/place_list.html:17
+msgid "Place List"
+msgstr "Liste des lieux"
+
+#: templates/pwn_event/place_list.html:21
+msgid "All places"
+msgstr "Tous les lieux"
+
+#: templates/pwn_event/season_detail.html:21
+msgid "Events in this season"
+msgstr "Conférences pour cette saison"
+
+#: templates/pwn_event/season_detail.html:26
+msgid "Sorry, no events in this season."
+msgstr "Aucune conférence pour cette saison."
+
+#: templates/pwn_event/season_list.html:13
+msgid "season List"
+msgstr "liste des saisons"
+
+#: templates/pwn_event/season_list.html:17
+msgid "All seasons"
+msgstr "Toutes les saisons"
+
+#: templates/pwn_event/speaker_detail.html:26
+msgid "Events by this speaker"
+msgstr "Conférences par speaker"
+
+#: templates/pwn_event/speaker_detail.html:31
+msgid "Sorry, no events in this speaker."
+msgstr "Aucune conférence pour ce speaker."
+
+#: templates/pwn_event/speaker_list.html:15
+msgid "speaker List"
+msgstr "liste des speaker"
+
+#: templates/pwn_event/speaker_list.html:19
+msgid "All speakers"
+msgstr "Tous les speakers"
+
+#: templates/pwn_event/tag_detail.html:14
+msgid "Events for this tag"
+msgstr "Conférences pour ce tag"
+
+#: templates/pwn_event/tag_detail.html:19
+msgid "Sorry, no events for this tag."
+msgstr "Aucune conférence pour ce tag."
+
+#: templates/pwn_event/tag_list.html:13
+msgid "Tag List"
+msgstr "Liste des tags"
+
+#: templates/pwn_event/tag_list.html:17
+msgid "All tags"
+msgstr "Tous les tags"
+
+#: templates/pwn_event/template_tags/last_events.html:10
+msgid "No events yet."
+msgstr "Pas de conférences pour le moment."
+
+#: templates/pwn_event/template_tags/tags.html:10
+msgid "No categories yet."
+msgstr "Pas de catégorie pour le moment."
