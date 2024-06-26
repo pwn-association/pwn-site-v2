@@ -14,7 +14,7 @@ Il est possible d'afficher les x derniers events sur n'importe quelle page à l'
 
 **Utilisation :**
 
-1. dans le template html charger les tags de l'app : **{% load i18n pwn_events %}**
+1. dans le template html charger les tags de l'app : **{% load i18n pwn_event %}**
 2. **{% get_last_events X %}** ou **X** est un entier et est facultatif
 
 Exemple dans *templates/pwn_event/home.html*
