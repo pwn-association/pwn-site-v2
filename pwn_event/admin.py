@@ -17,11 +17,31 @@ class EventAdmin(admin.ModelAdmin):
             {
                 "fields": [
                     ("title", "is_publish"),
+                    "season", "place",
                     "date",
-                    "image", "description",
-                    "place", "speakers", "tags",
-                    "season",
+
                 ],
+            },
+        ),
+        (
+            "Description / Image",
+            {
+                "classes": ["collapse"],
+                "fields": ["image", "description",],
+            },
+        ),
+        (
+            "Speakers",
+            {
+                "classes": ["collapse"],
+                "fields": ["speakers"],
+            },
+        ),
+        (
+            "Tags / Catégories",
+            {
+                "classes": ["collapse"],
+                "fields": ["tags"],
             },
         ),
         (

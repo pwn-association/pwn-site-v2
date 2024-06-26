@@ -12,8 +12,8 @@ class Season(models.Model):
     """ """
     name = models.CharField(_('name'), max_length=250, unique=True)
     slug = AutoSlugField(_('slug'), max_length=255, populate_from=['name'], unique=True, db_index=True)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date = models.DateField(_('start date'),)
+    end_date = models.DateField(_('end date'),)
 
     class Meta:
         get_latest_by = '-start_date'
