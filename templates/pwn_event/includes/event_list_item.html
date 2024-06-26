@@ -1,0 +1,22 @@
+<article class="event grid-item col">
+    <div class="event-inner">
+      <a href="{{ event.get_absolute_url }}" class="link-overlay"></a>
+      <div class="thumb" style="background-image: url('{{ event.image.url }}')">
+        <span class="date">
+          <span class="day">{{ event.date|date:"d" }}</span>
+          <span class="month">{{ event.date|date:"M" }}</span>
+          <span class="year">{{ event.date|date:"Y" }}</span>
+        </span>
+
+      </div>
+      <div class="event-description">
+        {% for tag in event.tags.all %}
+            <span class="event-tag">[{{ tag.name }}]</span>
+        {% endfor %}
+
+        <h3 class="event-name">
+          {{ event.title | truncatechars_html:50 }}
+        </h3>
+      </div>
+    </div>
+</article>
