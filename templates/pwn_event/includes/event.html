@@ -1,5 +1,7 @@
 {% load i18n cms_tags sekizai_tags thumbnail tz %}
 
+{% if not event.is_publish %}<div class="event col col-2 col-alone not-publish">!! preview !!</div>{% endif %}
+
 <article class="article event col col-2 col-alone
     {% if is_ongoing_events %} events-ongoing{% endif %}
     {% if is_upcoming_events %} events-upcoming{% endif %}

@@ -19,6 +19,7 @@
         <h3 class="event-name">
           {{ event.title | truncatechars_html:50 }}
         </h3>
+        {% if not event.is_publish %}<span class="not-publish">!! preview !!</span>{% endif %}
       </div>
     </div>
 </article>
