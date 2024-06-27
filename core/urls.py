@@ -18,9 +18,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, re_path, include
 
+from pwn_event.views.n8n import n8n_json_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('confs/', include('pwn_event.urls')),
+    path('last-event/', n8n_json_view, name='get-last-event-json'),
     re_path(r'^', include('cms.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
