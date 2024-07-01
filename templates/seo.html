@@ -7,7 +7,7 @@
     <meta name="description" content="{% if event %}{{ event.short_description|striptags|truncatechars_html:150 }}{% else %}{% page_attribute meta_description %}{% endif %}">
     <meta name="author" content="{{ site_author }}" />
 
-    <meta property="og:locale" content="{% ifequal request.LANGUAGE_CODE "fr" %}fr_FR{% else %}en_US{% endifequal %}" />
+    <meta property="og:locale" content="{% if request.LANGUAGE_CODE == "fr" %}fr_FR{% else %}en_US{% endif %}" />
     <meta property="og:title" content="{% if event %}{{ event.get_title|truncatechars_html:50 }}{% else %}{% page_attribute page_title %}{% endif %} | {{ site_name }}" />
     <meta property="og:description" content="{% if event %}{{ event.short_description|striptags|truncatechars_html:150 }}{% else %}{% page_attribute meta_description %}{% endif %}" />
     <meta property=”og:site_name” content="{{ site_name }}" />
