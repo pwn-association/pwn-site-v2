@@ -24,9 +24,10 @@ class Event(models.Model):
     image = FilerImageField(default=None, verbose_name=_("image"), null=True, blank=True, on_delete=models.SET_NULL)
     excerpt = RichTextField(_('excerpt'), blank=True, null=True)
     description = RichTextField(_('description'), blank=True, null=True)
-    place = models.ForeignKey(Place, on_delete=models.PROTECT, verbose_name=_('place'), related_name="events")
+    place = models.ForeignKey(Place, on_delete=models.SET_NULL, verbose_name=_('place'), related_name="events",
+                              null=True, blank=True)
     speakers = models.ManyToManyField(Speaker)
-    tags = models.ManyToManyField(Tag, blank=True, null=True)
+    tags = models.ManyToManyField(Tag)
     date = models.DateTimeField(_('Event date'))
     season = models.ForeignKey(Season, on_delete=models.PROTECT, verbose_name=_('season'), related_name="events")
 
