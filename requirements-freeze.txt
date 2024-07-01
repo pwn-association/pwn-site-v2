@@ -1,20 +1,20 @@
 Django==4.2.*
 django-cms==3.11.*
-django-extensions
-django-ckeditor
+django-extensions==3.2.*
+django-ckeditor==6.7.1
 django-classy-tags
-django-treebeard
-django-filer
-django-mptt
-django-sekizai
-djangocms-admin-style
-djangocms-file
-djangocms-link
-djangocms-picture
-djangocms-snippet
-djangocms-text-ckeditor
-easy-thumbnails
-Pillow
+django-treebeard==4.7.*
+django-filer==3.1.*
+django-mptt==0.16.*
+django-sekizai==4.1.*
+djangocms-admin-style==3.3.*
+djangocms-file==3.0.*
+djangocms-link==3.1.*
+djangocms-picture==4.1.*
+djangocms-snippet==3.1.*
+djangocms-text-ckeditor==5.1.5
+easy-thumbnails==2.8.*
+Pillow==10.4.*
 
 # django-formtools==2.4.1
 # django-js-asset==2.1.0
