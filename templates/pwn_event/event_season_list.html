@@ -35,7 +35,7 @@
     <div class="clear"></div>
 
 
-    {% for season in past_seasons %}
+    {% for season in past_seasons reversed %}
         {% if season.events.count > 0 %}
             <div class="past-events grid event-grid">
             <h3 class="section-title section-title-centered">{{ season }}</h3>

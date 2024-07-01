@@ -27,10 +27,16 @@ class Place(models.Model):
 
     @property
     def get_address(self):
-        address_2 = ''
-        if self.address2:
-            address_2 = f" {self.address2}"
-        return f"{self.name}, {self.address }{address_2}, {self.zip} {self.city}"
+        address = self.address if self.address else ''
+        address2 = f" {self.address2}" if self.address2 else ''
+        zipcode = f"{self.zip} " if self.zip else ''
+        city = self.city if self.city else ''
+
+        address_str = f"{self.name}, {address}{address2}"
+        if zipcode or city:
+            address_str += f", {zipcode}{city}"
+
+        return address_str
 
     class Meta:
         verbose_name = _('Place')

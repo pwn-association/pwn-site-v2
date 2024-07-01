@@ -1,4 +1,4 @@
-{% extends "aldryn_events/base.html" %}
+{% extends "back.aldryn_events/base.html" %}
 {% load i18n aldryn_events cms_tags apphooks_config_tags %}
 {% block bodyclass %}list-events{% endblock %}
 
@@ -93,7 +93,7 @@
         <p>{% trans "No items available" %}</p>
     {% endfor %}
 
-    {% include "aldryn_events/includes/pagination.html" %}
+    {% include "back.aldryn_events/includes/pagination.html" %}
 
     {% get_current_language as language %}
 {% endblock %}

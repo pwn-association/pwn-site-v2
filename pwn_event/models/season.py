@@ -19,6 +19,7 @@ class Season(models.Model):
         get_latest_by = '-start_date'
         verbose_name = _('Season')
         verbose_name_plural = _('Seasons')
+        ordering = ['name']
 
     def __str__(self):
         return self.name
