@@ -29,7 +29,10 @@ def get_last_events(context, number=3, template='pwn_event/template_tags/last_ev
     Return the most recent creations.
     """
 
-    season = Season.objects.get(start_date__lte=now(), end_date__gte=now())
+    try:
+        season = Season.objects.get(start_date__lte=now(), end_date__gte=now())
+    except Season.DoesNotExist:
+        season = None
     last_event_time = now().replace(hour=00, minute=00, second=00)
     request = context['request']
     if request.user.is_superuser:

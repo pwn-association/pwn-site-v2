@@ -6,7 +6,7 @@
 {% if not people_groups %}
     {# if grouping is disabled, list only people #}
     {% for person in people %}
-        {% include "aldryn_people/includes/person.html" with person=person %}
+        {% include "back.aldryn_people/includes/person.html" with person=person %}
     {% endfor %}
 {% else %}
     {# if enabled, we group the people by categories defined #}
@@ -14,9 +14,9 @@
         {# IMPORTANT: first show people with a group #}
         {% for group, people_list in people_groups.items %}
             {% if group.name %}
-                {% include "aldryn_people/includes/group.html" %}
+                {% include "back.aldryn_people/includes/group.html" %}
                 {% for person in people_list %}
-                    {% include "aldryn_people/includes/person.html" with person=person group="true" %}
+                    {% include "back.aldryn_people/includes/person.html" with person=person group="true" %}
                 {% endfor %}
             {% endif %}
         {% endfor %}
@@ -24,7 +24,7 @@
         {% if groupless_people.count %}
             <h2>{% trans "Ungrouped" %}</h2>
             {% for person in groupless_people.all %}
-                {% include "aldryn_people/includes/person.html" with person=person group="true" %}
+                {% include "back.aldryn_people/includes/person.html" with person=person group="true" %}
             {% endfor %}
         {% endif %}
     {% endlanguage %}
