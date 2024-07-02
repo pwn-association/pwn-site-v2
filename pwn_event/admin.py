@@ -8,9 +8,10 @@ from .models.tag import Tag
 
 class EventAdmin(admin.ModelAdmin):
     date_hierarchy = "date"
-    list_filter = ['is_publish',]
+    list_filter = ['is_publish', 'season']
     search_fields = ['title', 'speakers__first_name', 'speakers__last_name',]
-    list_display = ['title', 'date', 'get_speakers', 'place', 'is_publish']
+    list_display = ['title', 'is_publish', 'date', 'season', 'get_speakers', 'place',]
+    readonly_fields = ('season',)
     fieldsets =  [
         (
             None,
@@ -98,7 +99,7 @@ class PlaceAdmin(admin.ModelAdmin):
 
 
 class SeasonAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name', 'start_date', 'end_date']
 
 
 class TagAdmin(admin.ModelAdmin):

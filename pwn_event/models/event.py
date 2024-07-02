@@ -15,6 +15,7 @@ from ..models.speaker import Speaker
 from ..models.season import Season
 from ..models.tag import Tag
 from ..managers import EventPublishedManager
+from ..utils import get_or_create_season
 
 
 class Event(models.Model):
@@ -26,12 +27,13 @@ class Event(models.Model):
     description = RichTextField(_('description'), blank=True, null=True)
     place = models.ForeignKey(Place, on_delete=models.SET_NULL, verbose_name=_('place'), related_name="events",
                               null=True, blank=True)
-    speakers = models.ManyToManyField(Speaker)
-    tags = models.ManyToManyField(Tag)
+    speakers = models.ManyToManyField(Speaker, null=True, blank=True)
+    tags = models.ManyToManyField(Tag, null=True, blank=True)
     date = models.DateTimeField(_('Event date'))
-    season = models.ForeignKey(Season, on_delete=models.PROTECT, verbose_name=_('season'), related_name="events")
+    season = models.ForeignKey(Season, on_delete=models.PROTECT,
+                               verbose_name=_('season'), related_name="events", null=True, blank=True)
 
-    is_publish = models.BooleanField(_('is publish'), default=True)
+    is_publish = models.BooleanField(_('is publish'), default=False)
     start_publication = models.DateTimeField(_('start publication'), blank=True, null=True,
                                              help_text=_('Start date of publication.'))
     end_publication = models.DateTimeField(_('end publication'), blank=True, null=True,
@@ -44,6 +46,7 @@ class Event(models.Model):
         get_latest_by = '-date'
         verbose_name = _('Event')
         verbose_name_plural = _('Events')
+        ordering = ('-date', )
 
     def __str__(self):
         return f"{self.date} : {self.title}"
@@ -61,3 +64,11 @@ class Event(models.Model):
         if self.date <= last_event_time:
             return True
         return False
+
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None
+    ):
+        season = get_or_create_season(self.date)
+        self.season = season
+
+        super().save(force_insert, force_update, using, update_fields)

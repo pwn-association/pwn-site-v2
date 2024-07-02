@@ -40,6 +40,13 @@
     padding-left: 30px;
     font-size: em(16);
     margin: 20px auto;
+    li {
+      a {
+        color: $color2;
+        font-weight: bold;
+        text-transform: none;
+      }
+    }
     li + li {
       margin-top: 20px;
     }
