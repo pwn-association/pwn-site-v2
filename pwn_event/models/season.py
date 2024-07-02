@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 """ Event model for Creation """
+import calendar
+from datetime import date
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
-
 from django_extensions.db.fields import AutoSlugField
+
+
+EVENT_START_SEASON_MONTH = 9
+EVENT_END_SEASON_MONTH = 8
 
 
 class Season(models.Model):

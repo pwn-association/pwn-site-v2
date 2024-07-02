@@ -26,7 +26,10 @@ class EventBySeasonListView(ListView):
         self.season = None
 
     def get_queryset(self, **kwargs):
-        self.season = Season.objects.get(start_date__lte=now(), end_date__gte=now())
+        try:
+            self.season = Season.objects.get(start_date__lte=now(), end_date__gte=now())
+        except Season.DoesNotExist:
+            self.season = None
         last_event_time = now().replace(hour=00, minute=00, second=00)
         if self.request.user.is_superuser:
             return Event.objects.filter(season=self.season, date__gte=last_event_time)
@@ -36,7 +39,11 @@ class EventBySeasonListView(ListView):
         context = super(EventBySeasonListView, self).get_context_data(**kwargs)
         context['actual_season'] = self.season
 
-        past_seasons = Season.objects.filter(start_date__lte=now())
+        try:
+            past_seasons = Season.objects.filter(start_date__lte=now())
+        except Season.DoesNotExist:
+            past_seasons = None
+
         context['past_seasons'] = past_seasons
         return context
 
