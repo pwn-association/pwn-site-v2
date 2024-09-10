@@ -47,6 +47,7 @@
       <h3 class="event-subtitle">description de l'intervention {% render_model_icon event %}</h3>
       {{ event.description|safe }}
 
+      {% if event.speakers.count > 0 %}
       <h3 class="event-subtitle">description de l'intervenant</h3>
 
       {% for speaker in event.speakers.all %}
@@ -70,6 +71,7 @@
             {% endif %}
           </div>
       {% endfor %}
+    {% endif %}
     </div>
 
     <!-- {#<div class="button-container align-center">

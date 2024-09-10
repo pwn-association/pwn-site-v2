@@ -54,8 +54,9 @@ THIRD_PARTY_APPS = (
     'djangocms_file',
     'djangocms_picture',
     'djangocms_snippet',
-    'ckeditor',
+    # 'ckeditor',
     'djangocms_text.contrib.text_ckeditor5',
+    'django_ckeditor_5',
 )
 
 LOCAL_APPS = (

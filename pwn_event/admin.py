@@ -12,6 +12,7 @@ class EventAdmin(admin.ModelAdmin):
     search_fields = ['title', 'speakers__first_name', 'speakers__last_name',]
     list_display = ['title', 'is_publish', 'date', 'season', 'get_speakers', 'place',]
     readonly_fields = ('season',)
+    save_on_top = True
     fieldsets =  [
         (
             None,
@@ -24,13 +25,7 @@ class EventAdmin(admin.ModelAdmin):
                 ],
             },
         ),
-        # (
-        #     "Description / Image",
-        #     {
-        #         "classes": ["collapse"],
-        #         "fields": ["image", "description",],
-        #     },
-        # ),
+
         (
             "Speakers",
             {
@@ -38,13 +33,7 @@ class EventAdmin(admin.ModelAdmin):
                 "fields": ["speakers"],
             },
         ),
-        # (
-        #     "Tags / Catégories",
-        #     {
-        #         "classes": ["collapse"],
-        #         "fields": ["tags"],
-        #     },
-        # ),
+
         (
             "Publication",
             {
