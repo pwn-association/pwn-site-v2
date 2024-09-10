@@ -15,7 +15,8 @@
         <div class="clear"></div>
         <div class="grid event-grid">
           {# {% placeholder "Liste events" %}#}
-
+          {% get_last_events 3 %}
+          
           <article class="event grid-item col event-suggest">
             <div class="event-inner">
               <a href="/contact" class="link-overlay"></a>
@@ -28,9 +29,7 @@
                 </h3>
               </div>
             </div>
-          </article>
-
-          {% get_last_events 3 %}
+          </article>         
 
         </div>
 

@@ -8,7 +8,8 @@ from django.utils.timezone import now
 
 from django_extensions.db.fields import AutoSlugField
 from filer.fields.image import FilerImageField
-from ckeditor.fields import RichTextField
+# from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field as RichTextField
 
 from ..models.place import Place
 from ..models.speaker import Speaker
@@ -27,8 +28,8 @@ class Event(models.Model):
     description = RichTextField(_('description'), blank=True, null=True)
     place = models.ForeignKey(Place, on_delete=models.SET_NULL, verbose_name=_('place'), related_name="events",
                               null=True, blank=True)
-    speakers = models.ManyToManyField(Speaker)
-    tags = models.ManyToManyField(Tag)
+    speakers = models.ManyToManyField(Speaker, blank=True)
+    tags = models.ManyToManyField(Tag, blank=True)
     date = models.DateTimeField(_('Event date'))
     season = models.ForeignKey(Season, on_delete=models.PROTECT,
                                verbose_name=_('season'), related_name="events", null=True, blank=True)

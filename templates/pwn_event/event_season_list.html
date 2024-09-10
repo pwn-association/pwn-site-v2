@@ -15,7 +15,7 @@
     <div class="clear"></div>
     
     <div class="upcoming-events grid event-grid">
-        {% for event in events %}
+        {% for event in events reversed%}
             {% include "pwn_event/includes/event_list_item.html" %}
         {% empty %}
             <p>Pas d'événement pour le moment :(</p>
