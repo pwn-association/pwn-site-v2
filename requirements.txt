@@ -16,7 +16,7 @@ djangocms-snippet
 djangocms-text
 easy-thumbnails
 Pillow
-
+django-ckeditor-5
 # django-formtools==2.4.1
 # django-js-asset==2.1.0
 # django-polymorphic==3.1.0

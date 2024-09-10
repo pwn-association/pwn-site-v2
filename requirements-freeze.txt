@@ -16,7 +16,7 @@ djangocms-snippet==3.1.*
 djangocms-text==0.2.*
 easy-thumbnails==2.8.*
 Pillow==10.4.*
-
+django-ckeditor-5==0.2.*
 # django-formtools==2.4.1
 # django-js-asset==2.1.0
 # django-polymorphic==3.1.0
