@@ -16,8 +16,11 @@
 
 	<!-- /// Template CSS ////////  -->
 	<link rel="stylesheet" href="{% static "core/css/app.css" %}">
-
-	{% render_block "css" %}
+  {% render_block "css" %}
+  {% if request.user.is_staff %}
+	<link rel="stylesheet" href="{% static "core/css/fix-ckeditor.css" %}">
+  {% endif %}
+	
 </head>
 
 

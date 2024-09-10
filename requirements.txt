@@ -1,7 +1,7 @@
 Django==4.2.*
 django-cms==3.11.*
 django-extensions
-django-ckeditor
+#django-ckeditor
 django-classy-tags
 django-treebeard
 django-filer
@@ -12,7 +12,8 @@ djangocms-file
 djangocms-link
 djangocms-picture
 djangocms-snippet
-djangocms-text-ckeditor
+#djangocms-text-ckeditor
+djangocms-text
 easy-thumbnails
 Pillow
 

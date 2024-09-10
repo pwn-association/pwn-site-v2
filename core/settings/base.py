@@ -48,12 +48,14 @@ THIRD_PARTY_APPS = (
     'filer',
     'easy_thumbnails',
     'mptt',
-    'djangocms_text_ckeditor',
+    # 'djangocms_text_ckeditor',
+    'djangocms_text',
     'djangocms_link',
     'djangocms_file',
     'djangocms_picture',
     'djangocms_snippet',
     'ckeditor',
+    'djangocms_text.contrib.text_ckeditor5',
 )
 
 LOCAL_APPS = (
@@ -62,7 +64,7 @@ LOCAL_APPS = (
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
-
+DJANGOCMS_TEXT_EDITOR = "djangocms_text.contrib.text_ckeditor5.ckeditor5"
 
 # ==============================================================================
 # MIDDLEWARE CONFIGURATION
