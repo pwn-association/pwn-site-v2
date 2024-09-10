@@ -1,0 +1,14 @@
+.cms-dialog {
+    top: 40% !important;
+    height: 500px;
+}
+
+.cms-dialog .cms-modal-body {
+    position: relative  !important;
+    top: 0  !important;
+    height: 370px ;
+}
+.cms-dialog .cms-modal-body iframe {
+    width: 100%;
+    height: 100%;
+}
