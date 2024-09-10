@@ -18,7 +18,7 @@ urlpatterns = [
 ]
 
 
-# Liste des urls existants mais non utilisées dans ce projet
+# Liste des urls existantes mais non utilisées dans ce projet
 urlpatterns_not_used = [
     # Places
     path('places/', PlaceListView.as_view(), name='place_list'),
