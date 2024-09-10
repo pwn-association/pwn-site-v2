@@ -15,7 +15,7 @@ def n8n_json_view(request):
 
     data = {}
 
-    event = Event.published.filter(date__gte=now).order_by('-date').last()
+    event = Event.published.filter(date__gte=now, n8n=True).order_by('-date').last()
 
     if event:
         timestamp = get_timestamp(event.date)
