@@ -19,18 +19,18 @@ class EventAdmin(admin.ModelAdmin):
                 "fields": [
                     ("title", "is_publish"),
                     "season", "place",
-                    "date",
+                    "date",  "image", "description", "tags",
 
                 ],
             },
         ),
-        (
-            "Description / Image",
-            {
-                "classes": ["collapse"],
-                "fields": ["image", "description",],
-            },
-        ),
+        # (
+        #     "Description / Image",
+        #     {
+        #         "classes": ["collapse"],
+        #         "fields": ["image", "description",],
+        #     },
+        # ),
         (
             "Speakers",
             {
@@ -38,18 +38,18 @@ class EventAdmin(admin.ModelAdmin):
                 "fields": ["speakers"],
             },
         ),
-        (
-            "Tags / Catégories",
-            {
-                "classes": ["collapse"],
-                "fields": ["tags"],
-            },
-        ),
+        # (
+        #     "Tags / Catégories",
+        #     {
+        #         "classes": ["collapse"],
+        #         "fields": ["tags"],
+        #     },
+        # ),
         (
             "Publication",
             {
                 "classes": ["collapse"],
-                "fields": ["start_publication", "end_publication"],
+                "fields": ["n8n", "start_publication", "end_publication"],
             },
         ),
     ]

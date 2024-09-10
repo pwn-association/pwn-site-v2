@@ -27,12 +27,13 @@ class Event(models.Model):
     description = RichTextField(_('description'), blank=True, null=True)
     place = models.ForeignKey(Place, on_delete=models.SET_NULL, verbose_name=_('place'), related_name="events",
                               null=True, blank=True)
-    speakers = models.ManyToManyField(Speaker, null=True, blank=True)
-    tags = models.ManyToManyField(Tag, null=True, blank=True)
+    speakers = models.ManyToManyField(Speaker)
+    tags = models.ManyToManyField(Tag)
     date = models.DateTimeField(_('Event date'))
     season = models.ForeignKey(Season, on_delete=models.PROTECT,
                                verbose_name=_('season'), related_name="events", null=True, blank=True)
 
+    n8n = models.BooleanField(_('n8n'), default=True, help_text="La conférence est-elle visible par n8n ?")
     is_publish = models.BooleanField(_('is publish'), default=False)
     start_publication = models.DateTimeField(_('start publication'), blank=True, null=True,
                                              help_text=_('Start date of publication.'))
