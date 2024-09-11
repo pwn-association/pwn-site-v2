@@ -22,7 +22,7 @@ from pwn_event.views.n8n import n8n_json_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('confs/', include('pwn_event.urls')),
+    path('evenements/', include('pwn_event.urls')),
     path('last-event/', n8n_json_view, name='get-last-event-json'),
     path("ckeditor5/", include('django_ckeditor_5.urls')),
     re_path(r'^', include('cms.urls')),
