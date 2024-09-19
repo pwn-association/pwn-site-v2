@@ -7,8 +7,8 @@ from django.urls import reverse
 
 from django_extensions.db.fields import AutoSlugField
 from filer.fields.image import FilerImageField
-from ckeditor.fields import RichTextField
-
+# from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field as RichTextField
 
 class Speaker(models.Model):
     """ """
