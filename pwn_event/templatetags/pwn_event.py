@@ -36,9 +36,13 @@ def get_last_events(context, number=3, template='pwn_event/template_tags/last_ev
     last_event_time = now().replace(hour=00, minute=00, second=00)
     request = context['request']
     if request.user.is_superuser:
-        events = Event.objects.filter(season=season, date__gte=last_event_time)[:number]
+        events = Event.objects
     else:
-        events = Event.published.filter(season=season, date__gte=last_event_time)[:number]
+        events = Event.published
+
+    events = reversed(events
+              .filter(season=season, date__gte=last_event_time)
+              .order_by('date')[:number])
 
     return {'template': template, 'events': events}
 
