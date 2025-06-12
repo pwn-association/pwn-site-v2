@@ -25,25 +25,25 @@
     <div class="clear"></div>
 
     {# --- ÉVÉNEMENTS PROCHAINE SAISON --- #}
-    {% if futur_season %}
-    <h2 class="section-title section-title-centered">
-      <span class="before"></span>
-      <span class="center">Prochaine saison !!</span>
-      <span class="after"></span>
-    </h2>
-
-    <div class="clear"></div>
-
-    <div class="upcoming-events grid event-grid">
-        {% for event in futur_events reversed%}
-            {% include "pwn_event/includes/event_list_item.html" %}
-        {% empty %}
-            <p>Pas d'événement pour le moment :(</p>
-        {% endfor %}
-    </div>
-
-    <div class="clear"></div>
-    {% endif %}
+{#    {% if futur_season %}#}
+{#    <h2 class="section-title section-title-centered">#}
+{#      <span class="before"></span>#}
+{#      <span class="center">Prochaine saison !!</span>#}
+{#      <span class="after"></span>#}
+{#    </h2>#}
+{##}
+{#    <div class="clear"></div>#}
+{##}
+{#    <div class="upcoming-events grid event-grid">#}
+{#        {% for event in futur_events reversed%}#}
+{#            {% include "pwn_event/includes/event_list_item.html" %}#}
+{#        {% empty %}#}
+{#            <p>Pas d'événement pour le moment :(</p>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{##}
+{#    <div class="clear"></div>#}
+{#    {% endif %}#}
 
     {# --- ÉVÉNEMENTS PASSÉS --- #}
     <h2 class="section-title section-title-centered">
