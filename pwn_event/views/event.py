@@ -43,7 +43,7 @@ class EventBySeasonListView(ListView):
                 start_date__year=now().year, start_date__month=9
             )
             context["futur_events"] = Event.objects.filter(
-                date__year=now().year, date__month__gte=9
+                date__year__gte=now().year, date__month__gte=9
             )
         except Season.DoesNotExist:
             context["futur_season"] = None
