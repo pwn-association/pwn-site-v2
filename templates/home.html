@@ -16,7 +16,8 @@
         <div class="grid event-grid">
           {# {% placeholder "Liste events" %}#}
           {% get_last_events 3 %}
-          
+
+
           <article class="event grid-item col event-suggest">
             <div class="event-inner">
               <a href="/contact" class="link-overlay"></a>
@@ -31,6 +32,15 @@
             </div>
           </article>         
 
+        <div class="clear"></div>
+
+        <h2 class="section-title section-title-centered" style="margin-top: 50px;">
+          <span class="before"></span>
+          <span class="center">Prochaine saison !!</span>
+          <span class="after"></span>
+        </h2>
+        <div class="clear"></div>
+        {% get_futur_season_events 10 %}
         </div>
 
         <div class="align-center">

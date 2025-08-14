@@ -38,6 +38,16 @@ class EventBySeasonListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(EventBySeasonListView, self).get_context_data(**kwargs)
         context['actual_season'] = self.season
+        try:
+            context["futur_season"] = Season.objects.get(
+                start_date__year=now().year, start_date__month=9
+            )
+            context["futur_events"] = Event.objects.filter(
+                season=context["futur_season"]
+            )
+        except Season.DoesNotExist:
+            context["futur_season"] = None
+            context["futur_events"] = None
 
         try:
             past_seasons = Season.objects.filter(start_date__lte=now())
