@@ -22,46 +22,36 @@ class EventBySeasonListView(ListView):
     template_name = 'pwn_event/event_season_list.html'
     context_object_name = "events"
 
-    def __init__(self):
-        self.season = None
+    def _get_events_by_user_type_qs(self):
+        """Retourne les événements publiés ou non selon si l'utilisateur est admin ou pas"""
+        events = Event.published
+        if self.request.user.is_superuser:
+            events = Event.objects
+        return events.filter()
 
     def get_queryset(self, **kwargs):
-        try:
-            self.season = Season.objects.get(start_date__lte=now(), end_date__gte=now())
-        except Season.DoesNotExist:
-            self.season = None
-        last_event_time = now().replace(hour=00, minute=00, second=00)
-        if self.request.user.is_superuser:
-            return Event.objects.filter(season=self.season, date__gte=last_event_time)
-        return Event.published.filter(season=self.season, date__gte=last_event_time)
+        """Retourne les prochains events de la saison en cours."""
+        events = self._get_events_by_user_type_qs()
+        return events.filter(
+            season=Season.get_current(),
+            date__gte=now().date(),
+        )
+
 
     def get_context_data(self, **kwargs):
+        """Retourne dans le contexte, les evenements de la prochaine saison et des saisons passées"""
         context = super(EventBySeasonListView, self).get_context_data(**kwargs)
-        context['actual_season'] = self.season
-        try:
-            context["futur_season"] = Season.objects.get(
-                start_date__year=now().year, start_date__month=9
-            )
 
-            if self.request.user.is_superuser:
-                context["futur_events"] = Event.objects.filter(
-                    season=context["futur_season"]
-                )
-            else:
-                context["futur_events"] = Event.published.filter(
-                    season=context["futur_season"]
-                )
+        current_season = Season.get_current()
+        next_season = current_season.get_next() if current_season else None
+        events = self._get_events_by_user_type_qs()
 
-        except Season.DoesNotExist:
-            context["futur_season"] = None
-            context["futur_events"] = None
+        context.update({
+            "futur_season": next_season,
+            "futur_events": events.filter(season=next_season),
+            "past_seasons": Season.objects.filter(start_date__lte=now()).order_by('start_date'),
+        })
 
-        try:
-            past_seasons = Season.objects.filter(start_date__lte=now())
-        except Season.DoesNotExist:
-            past_seasons = None
-
-        context['past_seasons'] = past_seasons
         return context
 
 
@@ -73,5 +63,5 @@ class EventDetailView(DetailView):
 
     def get_queryset(self, *args, **kwargs):
         if self.request.user.is_superuser:
-            return Event.objects.filter()
-        return Event.published.filter()
+            return Event.objects
+        return Event.published
