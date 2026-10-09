@@ -25,16 +25,18 @@
     <div class="clear"></div>
 
     {# --- ÉVÉNEMENTS PROCHAINE SAISON --- #}
-    {% if futur_season %}
+    {% if futur_events %}
     <h2 class="section-title section-title-centered">
       <span class="before"></span>
       <span class="center">Prochaine saison !!</span>
       <span class="after"></span>
     </h2>
 
+
     <div class="clear"></div>
 
     <div class="upcoming-events grid event-grid">
+        <h3 class="section-title section-title-centered">{{ futur_season }}</h3>
         {% for event in futur_events reversed%}
             {% include "pwn_event/includes/event_list_item.html" %}
         {% empty %}
@@ -43,6 +45,7 @@
     </div>
 
     <div class="clear"></div>
+    <h3 class="section-title section-title-centered">{{ season }}</h3>
     {% endif %}
 
     {# --- ÉVÉNEMENTS PASSÉS --- #}
