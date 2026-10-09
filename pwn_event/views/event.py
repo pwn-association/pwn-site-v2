@@ -52,9 +52,6 @@ class EventBySeasonListView(ListView):
                     season=context["futur_season"]
                 )
 
-            context["futur_events"] = Event.objects.filter(
-                season=context["futur_season"]
-            )
         except Season.DoesNotExist:
             context["futur_season"] = None
             context["futur_events"] = None
