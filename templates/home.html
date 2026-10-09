@@ -32,17 +32,20 @@
             </div>
           </article>         
 
-        <div class="clear"></div>
+          <div class="clear"></div>
 
-        <h2 class="section-title section-title-centered" style="margin-top: 50px;">
-          <span class="before"></span>
-          <span class="center">Prochaine saison !!</span>
-          <span class="after"></span>
-        </h2>
-        <div class="clear"></div>
-        {% get_futur_season_events 10 %}
+          {% is_futur_season_exist as futur_season_exists %}
+          {% if futur_season_exists %}
+            <h2 class="section-title section-title-centered" style="margin-top: 50px;">
+              <span class="before"></span>
+              <span class="center">Prochaine saison !!</span>
+              <span class="after"></span>
+            </h2>
+            <div class="clear"></div>
+            {% get_futur_season_events 10 %}
+          {% endif %}
+
         </div>
-
         <div class="align-center">
           <a href="/evenements" class="button button-white">Voir tous les événements</a><br />
           <a href="https://calendar.google.com/calendar/embed?src=association.pwn%40gmail.com&ctz=Europe%2FParis" class="button button-white" target="_blank">Le calendrier sur Google Agenda</a>
