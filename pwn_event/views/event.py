@@ -42,6 +42,16 @@ class EventBySeasonListView(ListView):
             context["futur_season"] = Season.objects.get(
                 start_date__year=now().year, start_date__month=9
             )
+
+            if self.request.user.is_superuser:
+                context["futur_events"] = Event.objects.filter(
+                    season=context["futur_season"]
+                )
+            else:
+                context["futur_events"] = Event.published.filter(
+                    season=context["futur_season"]
+                )
+
             context["futur_events"] = Event.objects.filter(
                 season=context["futur_season"]
             )
