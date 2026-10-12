@@ -37,7 +37,6 @@ class EventBySeasonListView(ListView):
             date__gte=now().date(),
         )
 
-
     def get_context_data(self, **kwargs):
         """Retourne dans le contexte, les evenements de la prochaine saison et des saisons passées"""
         context = super(EventBySeasonListView, self).get_context_data(**kwargs)
